@@ -180,7 +180,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Anchors/TestAnchors.unity
     guid: 59827dbbb0f3741848771ee28a1081d3
   - enabled: 1
-    path: "Assets/Scenes/SimpleAR/SimpleAR - \u8907\u88FD.unity"
+    path: "Assets/AR\u66F8\u6CD5\u5C0E\u89BD.unity"
     guid: 42b4a5103e99cde44855656030c37797
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: c52d3bb36b4c86f47af54ab9c7a02589,

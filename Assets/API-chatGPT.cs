@@ -25,18 +25,8 @@ public class ChatGPTManager : MonoBehaviour
 
     public TMP_InputField userInput; // 使用者輸入框
     public TMP_Text responseText;    // 顯示 ChatGPT 回應的 UI 文字
-
-    public Camera arCamera; // 用來發射射線的攝影機
-    public InputActionReference rightTriggerAction; // 右手觸發器操作
-    public float maxRaycastDistance = 10f; // 射線最大距離
-    private PointerEventData pointerEventData;
-    private RaycastResult raycastResult;
     void Start()
     {
-        // 綁定 trigger 按鈕按下事件
-        pointerEventData = new PointerEventData(EventSystem.current); // 用來追蹤 UI 事件
-        rightTriggerAction.action.performed += ctx => OnTriggerPressed(); // 綁定觸發事件
-        rightTriggerAction.action.Enable();
         // 設定 JSON 檔案路徑
         chatGPTJsonFilePath = Path.Combine(Application.streamingAssetsPath, "chatGPT API.json");
         googleJsonFilePath = Path.Combine(Application.streamingAssetsPath, "AR-MR-google_credentials.json");
@@ -44,43 +34,46 @@ public class ChatGPTManager : MonoBehaviour
         // 讀取 API 金鑰
         StartCoroutine(LoadApiKey(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
         StartCoroutine(LoadApiKey(googleJsonFilePath, "private_key", OnApiKeyLoaded2));
-        
-    }
-    void Update()
-    {
-        // 檢測射線是否擊中 UI 元素
-        RaycastHit hit;
-        Ray ray = arCamera.ScreenPointToRay(new Vector3(arCamera.pixelWidth / 2, arCamera.pixelHeight / 2)); // 從畫面中間發射射線
-        if (Physics.Raycast(ray, out hit, maxRaycastDistance))
+        // 讀取 API 金鑰
+        chatGptApiKey = LoadApiKey(chatGPTJsonFilePath, "api_key");
+        googleApiKey = LoadApiKey(googleJsonFilePath, "private_key");
+
+        if (string.IsNullOrEmpty(chatGptApiKey))
         {
-            pointerEventData.position = hit.point;
-            ExecuteRaycast();
+            Debug.LogError("無法讀取 ChatGPT API 金鑰，請檢查 chatGPT API.json 檔案！");
+        }
+        else
+        {
+            Debug.Log("成功讀取 ChatGPT API 金鑰");
+        }
+
+        if (string.IsNullOrEmpty(googleApiKey))
+        {
+            Debug.LogError("無法讀取 Google Speech-to-Text API 金鑰，請檢查 AR-MR-google_credentials.json 檔案！");
+        }
+        else
+        {
+            Debug.Log("成功讀取 Google Speech-to-Text API 金鑰");
         }
     }
-
-    void ExecuteRaycast()
+    private string LoadApiKey(string filePath, string keyName)
     {
-        // 使用射線檢測來查找UI按鈕
-        List<RaycastResult> raycastResults = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
-
-        if (raycastResults.Count > 0)
+        if (!File.Exists(filePath))
         {
-            raycastResult = raycastResults[0]; // 擷取第一個被檢測到的 UI 元素
-            Debug.LogWarning("APIHit: " + raycastResult.gameObject.name);
+            Debug.LogError("找不到 JSON 檔案：" + filePath);
+            return null;
         }
-    }
 
-    void OnTriggerPressed()
-    {
-        if (raycastResult.gameObject != null)
+        try
         {
-            Button button = raycastResult.gameObject.GetComponent<Button>();
-            if (button != null)
-            {
-                Debug.LogWarning("Chat button");
-                //button.onClick.Invoke(); // 觸發按鈕的點擊事件
-            }
+            string jsonContent = File.ReadAllText(filePath);
+            JObject json = JObject.Parse(jsonContent);
+            return json[keyName]?.ToString(); // 讀取指定的 Key
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("讀取 JSON 檔案錯誤：" + ex.Message);
+            return null;
         }
     }
     // 回調函數處理加載的 API Key
@@ -93,7 +86,7 @@ public class ChatGPTManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("無法讀取 ChatGPT API 金鑰！");
+            //Debug.LogError("無法讀取 ChatGPT API 金鑰！");
         }
     }
     void OnApiKeyLoaded2(string apiKey)
@@ -105,7 +98,7 @@ public class ChatGPTManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("無法讀取 ChatGPT API 金鑰！");
+            //Debug.LogError("無法讀取 ChatGPT API 金鑰！");
         }
     }
     /// <summary>
