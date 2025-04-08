@@ -23,7 +23,7 @@ public class VoiceRecorder : MonoBehaviour
         if (Microphone.devices.Length > 0)
         {
             // 開始錄音
-            recordedClip = Microphone.Start(null, true, 1000, 16000);
+            recordedClip = Microphone.Start(null, true, 30, 16000);
             Debug.Log("錄音中...");
             if (Microphone.IsRecording(null))
             {

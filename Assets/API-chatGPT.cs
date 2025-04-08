@@ -6,11 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Text;
 using TMPro;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using System;
-using UnityEngine.EventSystems;
-using System.Collections.Generic; // ¤Þ¤J Input System
 
 
 public class ChatGPTManager : MonoBehaviour
