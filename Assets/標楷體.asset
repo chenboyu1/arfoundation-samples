@@ -108,6 +108,7 @@ Material:
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!28 &-1075450055911327844
 Texture2D:
   m_ObjectHideFlags: 0
@@ -118,10 +119,8 @@ Texture2D:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 2
+  serializedVersion: 4
   m_Width: 512
   m_Height: 512
   m_CompleteImageSize: 262144
@@ -168,15 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: "\u6A19\u6977\u9AD4"
   m_EditorClassIdentifier: 
-  hashCode: 29807834
-  material: {fileID: -1110679369526514632}
-  materialHashCode: -1385874502
   m_Version: 1.1.0
-  m_SourceFontFileGUID: f97848208793d304287816229c7e3407
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: f97848208793d304287816229c7e3407,
-    type: 3}
-  m_SourceFontFile: {fileID: 0}
-  m_AtlasPopulationMode: 0
   m_FaceInfo:
     m_FaceIndex: 0
     m_FamilyName: DFKai-SB
@@ -199,6 +190,31 @@ MonoBehaviour:
     m_StrikethroughOffset: 4.4
     m_StrikethroughThickness: 1.171875
     m_TabWidth: 12
+  m_Material: {fileID: -1110679369526514632}
+  m_SourceFontFileGUID: f97848208793d304287816229c7e3407
+  m_CreationSettings:
+    sourceFontFileName: 
+    sourceFontFileGUID: f97848208793d304287816229c7e3407
+    faceIndex: 0
+    pointSizeSamplingMode: 1
+    pointSize: 24
+    padding: 5
+    paddingMode: 0
+    packingMode: 0
+    atlasWidth: 512
+    atlasHeight: 512
+    characterSetSelectionMode: 7
+    characterSequence: "\u660E \u5510\u5BC5 \u5C3A\u7258\r\n\u6545\u66F8339-8\r\n\u7D19\u672C\r\n\r\n\u6B64\u4F5C\u70BA\u5510\u5BC5\uFF081470\uFF0D1524\uFF09\u81F4\u884C\u81FA\u5927\u4EBA\u9918\u5C71\u5148\u751F\u7684\u66F8\u4FE1\uFF0C\u5167\u5BB9\u4E2D\u63D0\u8ACB\u5176\u591A\u52A0\u7167\u9867\u53CB\u4EBA\uFF08\u6216\u9580\u751F\uFF09\u76E7\u9207\uFF08\u3108\u3128\uFF09\uFF0C\u4E26\u96A8\u4FE1\u5949\u4E0A\u4E94\u65A4\u4E73\u9905\uFF0C\u4EE5\u611F\u8B1D\u5C0D\u65B9\u5E73\u65E5\u7684\u95DC\u7167\u3002\u4E73\u9905\uFF08\u6216\u5373\u70BA\u4E73\u916A\uFF09\u5728\u660E\u4EE3\u70BA\u5E38\u898B\u7684\u65E5\u7528\u98DF\u54C1\uFF0C\u913A\uFF08\u310E\u3128\u3124\u02CB\uFF09\u74A0\uFF08\u3108\u3122\u02CA\uFF09\uFF08\u7D041458\uFF0D1521\uFF09\u300A\u4FBF\u6C11\u5716\u7E82\u300B\u4E2D\u4FBF\u8A73\u7D30\u8A18\u8F09\u4E86\u4E73\u9905\u7684\u88FD\u4F5C\u548C\u4FDD\u5B58\u65B9\u5F0F\uFF0C\u8DB3\u898B\u6B64\u7269\u4E4B\u666E\u53CA\u3002\r\n\r\n\u4FE1\u4E0A\u756B\u6709\u7E31\u7DDA\uFF0C\u4EE5\u884C\u6977\u66F8\u5BEB\uFF0C\u5B57\u8DE1\u79C0\u96C5\u800C\u4E0D\u5931\u529B\u5EA6\uFF0C\u5B57\u8DDD\u548C\u884C\u8DDD\u758F\u6717\u6709\u81F4\uFF0C\u6574\u9AD4\u5448\u73FE\u6E05\u65B0\u96C5\u81F4\u7684\u6C23\u606F\u3002"
+    referencedFontAssetGUID: 
+    referencedTextAssetGUID: 
+    fontStyle: 0
+    fontStyleModifier: 0
+    renderMode: 4165
+    includeFontFeatures: 0
+  m_SourceFontFile: {fileID: 0}
+  m_SourceFontFilePath: 
+  m_AtlasPopulationMode: 0
+  InternalDynamicOS: 0
   m_GlyphTable:
   - m_Index: 11
     m_Metrics:
@@ -2827,7 +2843,12 @@ MonoBehaviour:
   - {fileID: -1075450055911327844}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
+  m_GetFontFeatures: 1
   m_ClearDynamicDataOnBuild: 0
+  m_AtlasWidth: 512
+  m_AtlasHeight: 512
+  m_AtlasPadding: 5
+  m_AtlasRenderMode: 4165
   m_UsedGlyphRects:
   - m_X: 0
     m_Y: 0
@@ -3774,57 +3795,14 @@ MonoBehaviour:
     m_Y: 342
     m_Width: 34
     m_Height: 169
-  m_fontInfo:
-    Name: 
-    PointSize: 0
-    Scale: 0
-    CharacterCount: 0
-    LineHeight: 0
-    Baseline: 0
-    Ascender: 0
-    CapHeight: 0
-    Descender: 0
-    CenterLine: 0
-    SuperscriptOffset: 0
-    SubscriptOffset: 0
-    SubSize: 0
-    Underline: 0
-    UnderlineThickness: 0
-    strikethrough: 0
-    strikethroughThickness: 0
-    TabWidth: 0
-    Padding: 0
-    AtlasWidth: 0
-    AtlasHeight: 0
-  atlas: {fileID: 0}
-  m_AtlasWidth: 512
-  m_AtlasHeight: 512
-  m_AtlasPadding: 5
-  m_AtlasRenderMode: 4165
-  m_glyphInfoList: []
-  m_KerningTable:
-    kerningPairs: []
   m_FontFeatureTable:
+    m_MultipleSubstitutionRecords: []
+    m_LigatureSubstitutionRecords: []
     m_GlyphPairAdjustmentRecords: []
-  fallbackFontAssets: []
+    m_MarkToBaseAdjustmentRecords: []
+    m_MarkToMarkAdjustmentRecords: []
+  m_ShouldReimportFontFeatures: 0
   m_FallbackFontAssetTable: []
-  m_CreationSettings:
-    sourceFontFileName: 
-    sourceFontFileGUID: f97848208793d304287816229c7e3407
-    pointSizeSamplingMode: 1
-    pointSize: 24
-    padding: 5
-    packingMode: 0
-    atlasWidth: 512
-    atlasHeight: 512
-    characterSetSelectionMode: 7
-    characterSequence: "\u660E \u5510\u5BC5 \u5C3A\u7258\r\n\u6545\u66F8339-8\r\n\u7D19\u672C\r\n\r\n\u6B64\u4F5C\u70BA\u5510\u5BC5\uFF081470\uFF0D1524\uFF09\u81F4\u884C\u81FA\u5927\u4EBA\u9918\u5C71\u5148\u751F\u7684\u66F8\u4FE1\uFF0C\u5167\u5BB9\u4E2D\u63D0\u8ACB\u5176\u591A\u52A0\u7167\u9867\u53CB\u4EBA\uFF08\u6216\u9580\u751F\uFF09\u76E7\u9207\uFF08\u3108\u3128\uFF09\uFF0C\u4E26\u96A8\u4FE1\u5949\u4E0A\u4E94\u65A4\u4E73\u9905\uFF0C\u4EE5\u611F\u8B1D\u5C0D\u65B9\u5E73\u65E5\u7684\u95DC\u7167\u3002\u4E73\u9905\uFF08\u6216\u5373\u70BA\u4E73\u916A\uFF09\u5728\u660E\u4EE3\u70BA\u5E38\u898B\u7684\u65E5\u7528\u98DF\u54C1\uFF0C\u913A\uFF08\u310E\u3128\u3124\u02CB\uFF09\u74A0\uFF08\u3108\u3122\u02CA\uFF09\uFF08\u7D041458\uFF0D1521\uFF09\u300A\u4FBF\u6C11\u5716\u7E82\u300B\u4E2D\u4FBF\u8A73\u7D30\u8A18\u8F09\u4E86\u4E73\u9905\u7684\u88FD\u4F5C\u548C\u4FDD\u5B58\u65B9\u5F0F\uFF0C\u8DB3\u898B\u6B64\u7269\u4E4B\u666E\u53CA\u3002\r\n\r\n\u4FE1\u4E0A\u756B\u6709\u7E31\u7DDA\uFF0C\u4EE5\u884C\u6977\u66F8\u5BEB\uFF0C\u5B57\u8DE1\u79C0\u96C5\u800C\u4E0D\u5931\u529B\u5EA6\uFF0C\u5B57\u8DDD\u548C\u884C\u8DDD\u758F\u6717\u6709\u81F4\uFF0C\u6574\u9AD4\u5448\u73FE\u6E05\u65B0\u96C5\u81F4\u7684\u6C23\u606F\u3002"
-    referencedFontAssetGUID: 
-    referencedTextAssetGUID: 
-    fontStyle: 0
-    fontStyleModifier: 0
-    renderMode: 4165
-    includeFontFeatures: 0
   m_FontWeightTable:
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
@@ -3853,3 +3831,30 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
+  m_fontInfo:
+    Name: 
+    PointSize: 0
+    Scale: 0
+    CharacterCount: 0
+    LineHeight: 0
+    Baseline: 0
+    Ascender: 0
+    CapHeight: 0
+    Descender: 0
+    CenterLine: 0
+    SuperscriptOffset: 0
+    SubscriptOffset: 0
+    SubSize: 0
+    Underline: 0
+    UnderlineThickness: 0
+    strikethrough: 0
+    strikethroughThickness: 0
+    TabWidth: 0
+    Padding: 0
+    AtlasWidth: 0
+    AtlasHeight: 0
+  m_glyphInfoList: []
+  m_KerningTable:
+    kerningPairs: []
+  fallbackFontAssets: []
+  atlas: {fileID: 0}
