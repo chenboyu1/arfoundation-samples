@@ -90,7 +90,7 @@ public class ChatGPTManager : MonoBehaviour
         if (!string.IsNullOrEmpty(apiKey))
         {
             googleApiKey = apiKey;  // 將金鑰賦值給變數
-            Debug.Log("成功讀取 google API 金鑰: " + chatGptApiKey);
+            Debug.Log("成功讀取 google API 金鑰: " + googleApiKey);
         }
         else
         {
@@ -235,10 +235,14 @@ public class ChatGPTManager : MonoBehaviour
         using (UnityWebRequest request = new UnityWebRequest(fullUrl, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(postData);
+            Debug.LogWarning("1");
             request.downloadHandler = new DownloadHandlerBuffer();
+            Debug.LogWarning("2");
             request.SetRequestHeader("Content-Type", "application/json");
+            Debug.LogWarning("3");
 
             yield return request.SendWebRequest();
+            Debug.LogWarning("4");
 
             if (request.result == UnityWebRequest.Result.Success)
             {

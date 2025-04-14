@@ -183,6 +183,8 @@ EditorBuildSettings:
     path: Assets/ARexhibit.unity
     guid: 42b4a5103e99cde44855656030c37797
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 87571deb891152648b72b47719e02c62,
+      type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: c52d3bb36b4c86f47af54ab9c7a02589,
       type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f8ce26fe3bc69499b9be4b2378e97a94,

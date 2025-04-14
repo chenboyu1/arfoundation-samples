@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using TMPro;
+using System;
+using Newtonsoft.Json;
 
 public class GoogleSpeechToText : MonoBehaviour
 {
@@ -13,26 +15,19 @@ public class GoogleSpeechToText : MonoBehaviour
 
     public TMP_InputField userInputField;
     public VoiceRecorder voiceRecorder;
-    private AudioClip recordedClip; // 用來存錄音的 AudioClip
+    private AudioClip recordedClip;
 
     void Start()
     {
         audioFilePath = Path.Combine(Application.persistentDataPath, "recordedAudio.wav");
         Debug.Log($"音訊檔案儲存路徑：{audioFilePath}");
 
-        apiKey = LoadApiKey();
-        if (string.IsNullOrEmpty(apiKey))
-        {
-            Debug.LogError("無法讀取 Google API Key，請檢查 JSON 檔案！");
-        }
-        else
-        {
-            Debug.Log("成功讀取 API Key！");
-        }
+        // 讀取 API 金鑰
+        StartCoroutine(LoadKey("AR-MR-google_credentials.json", "private_key", OnApiKeyLoaded2));
 
         if (voiceRecorder == null)
         {
-            Debug.LogError("voiceRecorder 未綁定，請在 Unity Inspector 確保已設定！");
+            Debug.LogError("voiceRecorder 未綁定，請在 Unity Inspector 確保已設定！1");
         }
 
         if (GetComponent<AudioSource>() == null)
@@ -41,34 +36,56 @@ public class GoogleSpeechToText : MonoBehaviour
         }
     }
 
-    private string LoadApiKey()
+    // 修改後的 API 金鑰讀取方法
+    private IEnumerator LoadKey(string fileName, string keyName, Action<string> callback)
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, "AR-MR-google_credentials.json");
+        string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
-        if (!File.Exists(filePath))
+#if UNITY_ANDROID && !UNITY_EDITOR
+    //filePath = "jar:file://" + filePath;
+#endif
+
+        Debug.LogWarning("101嘗試讀取 JSON 路徑: " + filePath);
+
+        UnityWebRequest www = UnityWebRequest.Get(filePath);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            Debug.LogError("Google API Key JSON 檔案未找到：" + filePath);
-            return null;
-        }
+            string jsonContent = www.downloadHandler.text;
+            Debug.LogWarning("102讀取成功，內容：" + jsonContent);
 
-        try
-        {
-            string jsonContent = File.ReadAllText(filePath);
-            JObject json = JObject.Parse(jsonContent);
-            string key = json["private_key"]?.ToString();
-
-            if (string.IsNullOrEmpty(key))
+            try
             {
-                Debug.LogError("Google API Key JSON 檔案內沒有 'private_key' 欄位！");
-                return null;
+                JObject json = JObject.Parse(jsonContent);
+                string apiKey = json[keyName]?.ToString();
+                callback(apiKey); // 回傳 API key
             }
-
-            return key;
+            catch (JsonException ex)
+            {
+                Debug.LogError("103JSON 解析錯誤：" + ex.Message);
+                callback(null);
+            }
         }
-        catch (System.Exception ex)
+        else
         {
-            Debug.LogError("讀取 API Key 時發生錯誤：" + ex.Message);
-            return null;
+            Debug.LogError("104載入 JSON 檔案失敗：" + www.error);
+            callback(null);
+        }
+    }
+
+
+
+    void OnApiKeyLoaded2(string Key)
+    {
+        if (!string.IsNullOrEmpty(Key))
+        {
+            apiKey = Key;
+            Debug.LogWarning("4成功讀取 Google API 金鑰: " + apiKey);
+        }
+        else
+        {
+            Debug.LogError("5無法讀取 API 金鑰！");
         }
     }
 
@@ -76,7 +93,7 @@ public class GoogleSpeechToText : MonoBehaviour
     {
         if (voiceRecorder == null)
         {
-            Debug.LogError("voiceRecorder 未初始化，無法錄音！");
+            Debug.LogError("6voiceRecorder 未初始化，無法錄音！");
             return;
         }
 
@@ -84,24 +101,23 @@ public class GoogleSpeechToText : MonoBehaviour
         {
             voiceRecorder.StopRecording();
             isRecording = false;
-            Debug.Log("錄音結束，開始進行語音辨識...");
+            Debug.LogWarning("7錄音結束，開始進行語音辨識...");
 
-            recordedClip = voiceRecorder.GetRecordedClip(); // 從 VoiceRecorder 取得錄音
-
+            recordedClip = voiceRecorder.GetRecordedClip();
             if (recordedClip != null)
             {
-                StartCoroutine(UploadAudio()); // 上傳錄音進行語音辨識
+                StartCoroutine(UploadAudio()); // 上傳錄音
             }
             else
             {
-                Debug.LogError("錄音片段為空，無法進行語音辨識！");
+                Debug.LogError("8錄音片段為空，無法進行語音辨識！");
             }
         }
         else
         {
             voiceRecorder.StartRecording();
             isRecording = true;
-            Debug.Log("開始錄音...");
+            Debug.LogWarning("9開始錄音...");
         }
     }
 
@@ -109,7 +125,7 @@ public class GoogleSpeechToText : MonoBehaviour
     {
         if (!File.Exists(audioFilePath))
         {
-            Debug.LogError("錄音檔案未找到：" + audioFilePath);
+            Debug.LogError("10錄音檔案未找到：" + audioFilePath);
             yield break;
         }
 
@@ -118,7 +134,7 @@ public class GoogleSpeechToText : MonoBehaviour
 
         string url = $"https://speech.googleapis.com/v1/speech:recognize?key={apiKey}";
 
-        string jsonRequest = Newtonsoft.Json.JsonConvert.SerializeObject(new
+        string jsonRequest = JsonConvert.SerializeObject(new
         {
             config = new
             {
@@ -128,7 +144,7 @@ public class GoogleSpeechToText : MonoBehaviour
             },
             audio = new
             {
-                content = base64Audio // 確保這裡是 Base64 編碼的音訊數據
+                content = base64Audio
             }
         });
 
@@ -144,30 +160,29 @@ public class GoogleSpeechToText : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 string jsonResponse = www.downloadHandler.text;
-                Debug.Log("語音辨識結果: " + jsonResponse);
+                Debug.LogWarning("11語音辨識結果: " + jsonResponse);
                 ProcessSpeechToTextResponse(jsonResponse);
             }
             else
             {
-                Debug.LogError("語音辨識失敗：" + www.error);
-                Debug.LogError("錯誤詳細訊息：" + www.downloadHandler.text);
+                Debug.LogError("12語音辨識失敗：" + www.error);
+                Debug.LogError("13錯誤詳細訊息：" + www.downloadHandler.text);
             }
         }
     }
-
 
     private void ProcessSpeechToTextResponse(string jsonResponse)
     {
         try
         {
-            Debug.Log("開始解析 API 回應...");
+            Debug.LogWarning("14開始解析 API 回應...");
             JObject response = JObject.Parse(jsonResponse);
             var results = response["results"];
 
             if (results != null && results.HasValues)
             {
                 string transcript = results[0]["alternatives"][0]["transcript"]?.ToString();
-                Debug.Log($"語音辨識結果：{transcript}");
+                Debug.LogWarning($"15語音辨識結果：{transcript}");
 
                 if (userInputField != null)
                 {
@@ -175,17 +190,17 @@ public class GoogleSpeechToText : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("userInputField 尚未指定！");
+                    Debug.LogWarning("16userInputField 尚未指定！");
                 }
             }
             else
             {
-                Debug.LogWarning("API 回傳成功，但找不到辨識結果！");
+                Debug.LogWarning("17API 回傳成功，但找不到辨識結果！");
             }
         }
         catch (System.Exception ex)
         {
-            Debug.LogError("解析 API 回應時發生錯誤：" + ex.Message);
+            Debug.LogError("18解析 API 回應時發生錯誤：" + ex.Message);
         }
     }
 }
