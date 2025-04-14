@@ -11,8 +11,9 @@ public class ShowTextOnClick : MonoBehaviour
         displayText.gameObject.SetActive(false); // 一開始隱藏文字
     }
 
-    public void ShowText()
+    public void ToggleText()
     {
-        displayText.gameObject.SetActive(true); // 顯示文字
+        // 如果現在是顯示狀態，按一下就隱藏；反之亦然
+        displayText.gameObject.SetActive(!displayText.gameObject.activeSelf);
     }
 }
