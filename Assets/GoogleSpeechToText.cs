@@ -16,7 +16,7 @@ public class GoogleSpeechToText : MonoBehaviour
     public TMP_InputField userInputField;
     public VoiceRecorder voiceRecorder;
     private AudioClip recordedClip;
-
+    public TextMeshProUGUI btnName;
     void Start()
     {
         audioFilePath = Path.Combine(Application.persistentDataPath, "recordedAudio.wav");
@@ -112,12 +112,14 @@ public class GoogleSpeechToText : MonoBehaviour
             {
                 Debug.LogError("8錄音片段為空，無法進行語音辨識！");
             }
+            btnName.text = "語音";
         }
         else
         {
             voiceRecorder.StartRecording();
             isRecording = true;
             Debug.LogWarning("9開始錄音...");
+            btnName.text = "錄音中";
         }
     }
 
