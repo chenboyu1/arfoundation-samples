@@ -157,6 +157,12 @@ public class ChatGPTManager : MonoBehaviour
 
     private IEnumerator SendChatGPTRequest(string message)
     {
+        if (string.IsNullOrEmpty(chatGptApiKey))
+        {
+            Debug.LogError("ChatGPT API 金鑰尚未載入！");
+            yield break;
+        }
+
         string jsonPayload = JsonConvert.SerializeObject(new
         {
             model = "gpt-3.5-turbo",
@@ -213,6 +219,12 @@ public class ChatGPTManager : MonoBehaviour
 
     public IEnumerator SendAudioToGoogleSpeech(byte[] audioData)
     {
+        if (string.IsNullOrEmpty(googleApiKey))
+        {
+            Debug.LogError("Google API 金鑰尚未載入！");
+            yield break;
+        }
+
         string fullUrl = googleApiUrl + googleApiKey;
 
         var requestData = new

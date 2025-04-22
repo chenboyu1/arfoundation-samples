@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 using TMPro;
 using System;
 using Newtonsoft.Json;
+using UnityEngine.UI;
+
 
 public class GoogleSpeechToText : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class GoogleSpeechToText : MonoBehaviour
     public TMP_InputField userInputField;
     public VoiceRecorder voiceRecorder;
     private AudioClip recordedClip;
+    public TextMeshProUGUI btnName;
+    public Button clearButton;
 
     void Start()
     {
@@ -33,6 +37,15 @@ public class GoogleSpeechToText : MonoBehaviour
         if (GetComponent<AudioSource>() == null)
         {
             gameObject.AddComponent<AudioSource>();
+        }
+
+        if (clearButton != null)
+        {
+            clearButton.onClick.AddListener(ClearInputField);
+        }
+        else
+        {
+            Debug.LogWarning("Clear Button 尚未綁定！");
         }
     }
 
@@ -112,12 +125,14 @@ public class GoogleSpeechToText : MonoBehaviour
             {
                 Debug.LogError("8錄音片段為空，無法進行語音辨識！");
             }
+            btnName.text = "語音";
         }
         else
         {
             voiceRecorder.StartRecording();
             isRecording = true;
             Debug.LogWarning("9開始錄音...");
+            btnName.text = "錄音中";
         }
     }
 
@@ -201,6 +216,14 @@ public class GoogleSpeechToText : MonoBehaviour
         catch (System.Exception ex)
         {
             Debug.LogError("18解析 API 回應時發生錯誤：" + ex.Message);
+        }
+    }
+
+    private void ClearInputField()
+    {
+        if (userInputField != null)
+        {
+            userInputField.text = "";
         }
     }
 }
