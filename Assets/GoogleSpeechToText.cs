@@ -66,7 +66,7 @@ public class GoogleSpeechToText : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             string jsonContent = www.downloadHandler.text;
-            Debug.LogWarning("102讀取成功，內容：" + jsonContent);
+            Debug.LogWarning("102讀取成功");
 
             try
             {
@@ -94,7 +94,7 @@ public class GoogleSpeechToText : MonoBehaviour
         if (!string.IsNullOrEmpty(Key))
         {
             apiKey = Key;
-            Debug.LogWarning("4成功讀取 Google API 金鑰: " + apiKey);
+            Debug.LogWarning("4成功讀取 Google API 金鑰");
         }
         else
         {

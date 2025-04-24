@@ -175,7 +175,7 @@ public class ChatGPTManager : MonoBehaviour
 
         byte[] postData = Encoding.UTF8.GetBytes(jsonPayload);
 
-        using (UnityWebRequest request = new UnityWebRequest(apiUrl, "POST"))
+        using (UnityWebRequest request = new(apiUrl, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(postData);
             request.downloadHandler = new DownloadHandlerBuffer();
