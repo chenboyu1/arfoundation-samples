@@ -137,10 +137,11 @@ public class DallePoetryPainter : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，盡量精簡描述畫面，控制在 1~2 句話以內。" },
+            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換成一千字元以下的英文描述詩中畫面" },
             new { role = "user", content = chinesePoem }
             }
         };
+        //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，盡量精簡描述畫面，控制在 1~2 句話以內。
 
         string jsonBody = JsonConvert.SerializeObject(body);
         UnityWebRequest request = new UnityWebRequest(url, "POST");
