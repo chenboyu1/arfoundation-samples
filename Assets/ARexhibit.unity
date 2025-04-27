@@ -2963,7 +2963,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1363402944}
         m_TargetAssemblyTypeName: DallePoetryPainter, Assembly-CSharp
-        m_MethodName: GenerateImageFromChinesePoetry
+        m_MethodName: GenerateImageFromPromptButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
