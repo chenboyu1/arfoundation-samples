@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -22,6 +23,8 @@ public class DallePoetryPainter : MonoBehaviour
 
     private string chatGptApiKey;
     private string chatGPTJsonFilePath;
+    public Button generateButton; // 拖曳按鈕物件
+    public TextMeshProUGUI buttonText; // 拖曳按鈕文字物件
 
     // Start 在開始時讀取 JSON 檔案
     void Start()
@@ -114,20 +117,13 @@ public class DallePoetryPainter : MonoBehaviour
     }
 
     // 給按鈕觸發的公開方法
-    public void GenerateImageFromChinesePoetry()
+    private IEnumerator GenerateImageFromChinesePoetry()
     {
-        if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
-        {
-            Debug.LogError("請設定 API 金鑰與貼圖物件！");
-            return;
-        }
-
-        StartCoroutine(TranslatePoetryToPrompt(promptText, (prompt) =>
+        yield return TranslatePoetryToPrompt(promptText, (prompt) =>
         {
             StartCoroutine(GenerateImageFromPrompt(prompt));
-        }));
+        });
     }
-
 
     IEnumerator TranslatePoetryToPrompt(string chinesePoem, Action<string> onPromptReady)
     {
@@ -170,11 +166,22 @@ public class DallePoetryPainter : MonoBehaviour
             else
             {
                 Debug.LogError("轉換失敗：回傳內容為空");
+
+                if (buttonText != null)
+                    buttonText.text = "繪圖";
+
+                if (generateButton != null)
+                    generateButton.interactable = true;
             }
         }
         else
         {
             Debug.LogError("轉換失敗：" + request.error + "\n" + request.downloadHandler.text);
+            if (buttonText != null)
+                buttonText.text = "繪圖";
+
+            if (generateButton != null)
+                generateButton.interactable = true;
         }
     }
 
@@ -209,6 +216,15 @@ public class DallePoetryPainter : MonoBehaviour
         {
             Debug.LogError("圖像生成失敗：" + request.error + "\n" + request.downloadHandler.text);
         }
+
+        if (buttonText != null)
+        {
+            buttonText.text = "繪圖";
+        }
+        if (generateButton != null)
+        {
+            generateButton.interactable = true; // 啟用按鈕
+        }
     }
 
     string ExtractImageUrl(string json)
@@ -238,4 +254,25 @@ public class DallePoetryPainter : MonoBehaviour
             Debug.LogError("圖片下載失敗：" + imageRequest.error);
         }
     }
+
+    public void GenerateImageFromPromptButton()
+    {
+        if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
+        {
+            Debug.LogError("請設定 API 金鑰與貼圖物件！");
+            return;
+        }
+
+        if (buttonText != null)
+        {
+            buttonText.text = "生成圖片中...";
+        }
+
+        if (generateButton != null)
+        {
+            generateButton.interactable = false; // 禁用按鈕
+        }
+        StartCoroutine(GenerateImageFromChinesePoetry());
+    }
+
 }

@@ -18,7 +18,7 @@ public class GoogleSpeechToText : MonoBehaviour
     public TMP_InputField userInputField;
     public VoiceRecorder voiceRecorder;
     private AudioClip recordedClip;
-    public TextMeshProUGUI btnName;
+    public TextMeshProUGUI btnName; // 按鈕上的文字
     public Button clearButton;
 
     void Start()
@@ -138,6 +138,8 @@ public class GoogleSpeechToText : MonoBehaviour
 
     IEnumerator UploadAudio()
     {
+        btnName.text = "辨識中...";
+
         if (!File.Exists(audioFilePath))
         {
             Debug.LogError("10錄音檔案未找到：" + audioFilePath);
@@ -184,6 +186,7 @@ public class GoogleSpeechToText : MonoBehaviour
                 Debug.LogError("13錯誤詳細訊息：" + www.downloadHandler.text);
             }
         }
+        btnName.text = "語音";
     }
 
     private void ProcessSpeechToTextResponse(string jsonResponse)
