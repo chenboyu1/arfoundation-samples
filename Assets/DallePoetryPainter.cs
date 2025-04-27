@@ -116,7 +116,7 @@ public class DallePoetryPainter : MonoBehaviour
         }
     }
 
-    //按下按鈕後觸發，開始整個流程。
+    //1. 按下按鈕後觸發，開始整個流程。
     public void GenerateImageFromPromptButton()
     {
         if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
@@ -130,7 +130,7 @@ public class DallePoetryPainter : MonoBehaviour
         StartCoroutine(GenerateImageFromChinesePoetry());
     }
 
-    //準備開始翻譯
+    //2. 準備開始翻譯
     private IEnumerator GenerateImageFromChinesePoetry()
     {
         yield return TranslatePoetryToPrompt(promptText, (prompt) =>
@@ -144,7 +144,7 @@ public class DallePoetryPainter : MonoBehaviour
         });
     }
 
-    //把中文詩詞送給 ChatGPT 翻成英文提示語
+    //3. 把中文詩詞送給 ChatGPT 翻成英文提示語
     IEnumerator TranslatePoetryToPrompt(string chinesePoem, Action<string> onPromptReady)
     {
         string url = "https://api.openai.com/v1/chat/completions";
@@ -195,7 +195,7 @@ public class DallePoetryPainter : MonoBehaviour
         }
     }
 
-    //把英文提示語送給 DALL·E 生成圖片。
+    //4. 把英文提示語送給 DALL·E 生成圖片。
     IEnumerator GenerateImageFromPrompt(string prompt, Action onComplete)
     {
         string url = "https://api.openai.com/v1/images/generations";
@@ -231,7 +231,7 @@ public class DallePoetryPainter : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    //從生成結果中提取圖片網址。
+    //5. 從生成結果中提取圖片網址。
     string ExtractImageUrl(string json)
     {
         int startIndex = json.IndexOf("https://");
@@ -243,7 +243,7 @@ public class DallePoetryPainter : MonoBehaviour
         return null;
     }
 
-    //用網址去下載圖片，並且把圖片貼到指定的 Renderer 上。
+    //6. 用網址去下載圖片，並且把圖片貼到指定的 Renderer 上。
     IEnumerator DownloadAndApplyImage(string url)
     {
         UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(url);
@@ -253,6 +253,10 @@ public class DallePoetryPainter : MonoBehaviour
         {
             Texture2D downloadedTexture = DownloadHandlerTexture.GetContent(imageRequest);
             targetRenderer.material.mainTexture = downloadedTexture;
+            targetRenderer.material.shader = Shader.Find("Unlit/Texture");
+            Debug.Log("準備下載圖片：" + url);
+
+
             Debug.Log("圖片已成功套用！");
         }
         else
