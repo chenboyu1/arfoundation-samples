@@ -123,7 +123,7 @@ public class VoiceChatObject : MonoBehaviour
 
     IEnumerator PlayTTS(string text)
     {
-        string url = $"https://texttospeech.googleapis.com/v1/text:synthesize?key={googleApiKey}";
+        string url = $"https://speech.googleapis.com/v1p1beta1/speech:recognize?key={googleApiKey}";
 
         string json = @"
         {
