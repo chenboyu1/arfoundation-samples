@@ -162,6 +162,15 @@ public class VoiceChatObject : MonoBehaviour
                 if (www.result == UnityWebRequest.Result.Success)
                 {
                     AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                    if (clip != null)
+                    {
+                        Debug.Log("成功載入 TTS 音檔！");
+                    }
+                    else
+                    {
+                        Debug.LogError("載入 TTS 音檔失敗！（clip 是 null）");
+                    }
+
                     audioSource.clip = clip;
                     audioSource.Play();
                 }
