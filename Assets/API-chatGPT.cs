@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using TMPro;
 using System;
+using UnityEngine.Audio;
 
 
 public class ChatGPTManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class ChatGPTManager : MonoBehaviour
 
     private string chatGPTJsonFilePath;
     private string googleJsonFilePath;
+    public AudioSource audioSource; // 定義 AudioSource 變數
 
     public TMP_InputField userInput; // 使用者輸入框
     public TMP_Text responseText;    // 顯示 ChatGPT 回應的 UI 文字
@@ -163,19 +165,21 @@ public class ChatGPTManager : MonoBehaviour
             yield break;
         }
 
+        responseText.text = "等待 ChatGPT 回應中...";
+
         string jsonPayload = JsonConvert.SerializeObject(new
         {
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-                new { role = "system", content = "You are a friendly AI assistant." },
-                new { role = "user", content = message }
+            new { role = "system", content = "You are a friendly AI assistant." },
+            new { role = "user", content = message }
             }
         });
 
         byte[] postData = Encoding.UTF8.GetBytes(jsonPayload);
 
-        using (UnityWebRequest request = new(apiUrl, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(apiUrl, "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(postData);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -183,7 +187,8 @@ public class ChatGPTManager : MonoBehaviour
             request.SetRequestHeader("Authorization", "Bearer " + chatGptApiKey);
 
             yield return request.SendWebRequest();
-            Debug.LogWarning("already send");
+            Debug.LogWarning("已送出請求到 ChatGPT");
+
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string responseJson = request.downloadHandler.text;
@@ -191,12 +196,16 @@ public class ChatGPTManager : MonoBehaviour
 
                 try
                 {
-                    // 解析 API 回應
                     var response = JsonConvert.DeserializeObject<ChatGPTResponse>(responseJson);
                     if (response.choices.Length > 0)
                     {
                         string chatGPTReply = response.choices[0].message.content;
-                        responseText.text = chatGPTReply; // 顯示在 UI 上
+                        Debug.Log("ChatGPT 回覆：" + chatGPTReply);
+
+                        responseText.text = chatGPTReply; // 顯示文字
+
+                        //  呼叫語音合成並播放
+                        StartCoroutine(SynthesizeAndPlay(chatGPTReply));
                     }
                     else
                     {
@@ -216,6 +225,55 @@ public class ChatGPTManager : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator SynthesizeAndPlay(string text)
+    {
+        responseText.text = "正在合成語音...";
+
+        string ttsUrl = $"https://speech.googleapis.com/v1/speech:recognize?key={googleApiKey}";
+
+        var ttsRequest = new
+        {
+            input = new { text = text },
+            voice = new { languageCode = "zh-TW", ssmlGender = "FEMALE" },
+            audioConfig = new { audioEncoding = "LINEAR16" }
+        };
+
+        string jsonData = JsonConvert.SerializeObject(ttsRequest);
+
+        UnityWebRequest request = new UnityWebRequest(ttsUrl, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("TTS 合成成功");
+
+            var ttsResponse = JsonConvert.DeserializeObject<TTSResponse>(request.downloadHandler.text);
+            byte[] audioData = Convert.FromBase64String(ttsResponse.audioContent);
+
+            // 播放
+            AudioClip clip = WavUtility.ToAudioClip(audioData, 16000); // 確保你有 WavUtility！
+            audioSource.clip = clip;
+            audioSource.Play();
+
+            responseText.text = "播放中...";
+        }
+        else
+        {
+            Debug.LogError("TTS 合成失敗: " + request.error);
+            responseText.text = "語音合成失敗：" + request.error;
+        }
+    }
+
+
+
+
+
 
     public IEnumerator SendAudioToGoogleSpeech(byte[] audioData)
     {
