@@ -2811,8 +2811,8 @@ MonoBehaviour:
   promptText: "\u4F8D\u751F\u5510\u5BC5\u9813\u9996\u518D\u62DC\u3002\u9918\u5C71\u5927\u4EBA\u884C\u81FA\u3002\u820D\u5F1F\u4F86\u53C3\u3002\u5099\u77E5\u8D77\u5C45\u6E05\u52DD\u3002\u4F46\u672A\u77E5\u516C\u52D9\u7562\u671F\u3002\u6C7A\u5728\u4F55\u65E5\u3002\u7947\u6050\u6625\u4F86\u96E8\u96EA\u4EA4\u81F3\u3002\u4EA6\u53EF\u5FF5\u4E5F\u3002\u8332\u6709\u53CB\u751F\u76E7\u9207\u3002\u56E0\u7576\u5858\u9577\u89E3\u592B\u5728\u5F7C\u6D3E\u70BA\u7532\u9577\u3002\u7D20\u662F\u5BCC\u5BB6\u5B50\u5F1F\u3002\u4E0D\u582A\u52DE\u82E6\u3002\u65E9\u665A\u4E4B\u9593\u3002\u842C\u671B\u6E05\u76EE\u4E00\u4E8C\u3002\u8DB3\u898B\u57F7\u4E8B\u5E73\u65E5\u898B\u539A\u5340\u5340\u610F\u3002\u5949\u53BB\u4E73\u9905\u4E94\u65A4\u3002\u6240\u5145\u4E00\u8336\u4E4B\u7528\u3002\u76F8\u898B\u5728\u9087\u3002\u5306\u5306\u4E0D\u6089\u3002\u4F8D\u751F\u5510\u5BC5\u518D\u62DC\u3002"
   targetRenderer: {fileID: 99774572}
   imageSize: 1024x1024
-  generateButton: {fileID: 0}
-  buttonText: {fileID: 0}
+  generateButton: {fileID: 1427475376}
+  buttonText: {fileID: 1880168979}
 --- !u!224 &1363402945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3184,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1744496782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1869757036}
+        m_TargetAssemblyTypeName: CharacterClickToggleUI, Assembly-CSharp
+        m_MethodName: ToggleUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1744496782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,7 +3210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3469,10 +3481,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u756B\u5716"
+  m_text: "\u7E6A\u5716"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4e771eb273b0961488e5150acb71985a, type: 2}
-  m_sharedMaterial: {fileID: -1110679369526514632, guid: 4e771eb273b0961488e5150acb71985a,
+  m_fontAsset: {fileID: 11400000, guid: 80c0259c218df43439cc22ecd70d1d8f, type: 2}
+  m_sharedMaterial: {fileID: -5690744404329556638, guid: 80c0259c218df43439cc22ecd70d1d8f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

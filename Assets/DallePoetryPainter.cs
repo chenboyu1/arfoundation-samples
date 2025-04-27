@@ -116,15 +116,35 @@ public class DallePoetryPainter : MonoBehaviour
         }
     }
 
-    // 給按鈕觸發的公開方法
+    //按下按鈕後觸發，開始整個流程。
+    public void GenerateImageFromPromptButton()
+    {
+        if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
+        {
+            Debug.LogError("請設定 API 金鑰與貼圖物件！");
+            return;
+        }
+
+        buttonText.text = "繪圖中"; //這裡按下按鈕就改字
+        generateButton.interactable = false; // 禁用按鈕
+        StartCoroutine(GenerateImageFromChinesePoetry());
+    }
+
+    //準備開始翻譯
     private IEnumerator GenerateImageFromChinesePoetry()
     {
         yield return TranslatePoetryToPrompt(promptText, (prompt) =>
         {
-            StartCoroutine(GenerateImageFromPrompt(prompt));
+            StartCoroutine(GenerateImageFromPrompt(prompt, () =>
+            {
+                //當圖片生成結束，這邊回來
+                buttonText.text = "繪圖";
+                generateButton.interactable = true;
+            }));
         });
     }
 
+    //把中文詩詞送給 ChatGPT 翻成英文提示語
     IEnumerator TranslatePoetryToPrompt(string chinesePoem, Action<string> onPromptReady)
     {
         string url = "https://api.openai.com/v1/chat/completions";
@@ -133,11 +153,12 @@ public class DallePoetryPainter : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換成一千字元以下的英文描述詩中畫面" },
+            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換在控制英文在一千字元內，盡量精簡描述畫面。" },
             new { role = "user", content = chinesePoem }
             }
         };
         //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，盡量精簡描述畫面，控制在 1~2 句話以內。
+        //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換成一千字元以下的英文描述詩中畫面"
 
         string jsonBody = JsonConvert.SerializeObject(body);
         UnityWebRequest request = new UnityWebRequest(url, "POST");
@@ -166,26 +187,16 @@ public class DallePoetryPainter : MonoBehaviour
             else
             {
                 Debug.LogError("轉換失敗：回傳內容為空");
-
-                if (buttonText != null)
-                    buttonText.text = "繪圖";
-
-                if (generateButton != null)
-                    generateButton.interactable = true;
             }
         }
         else
         {
             Debug.LogError("轉換失敗：" + request.error + "\n" + request.downloadHandler.text);
-            if (buttonText != null)
-                buttonText.text = "繪圖";
-
-            if (generateButton != null)
-                generateButton.interactable = true;
         }
     }
 
-    IEnumerator GenerateImageFromPrompt(string prompt)
+    //把英文提示語送給 DALL·E 生成圖片。
+    IEnumerator GenerateImageFromPrompt(string prompt, Action onComplete)
     {
         string url = "https://api.openai.com/v1/images/generations";
         string jsonBody = JsonConvert.SerializeObject(new
@@ -217,16 +228,10 @@ public class DallePoetryPainter : MonoBehaviour
             Debug.LogError("圖像生成失敗：" + request.error + "\n" + request.downloadHandler.text);
         }
 
-        if (buttonText != null)
-        {
-            buttonText.text = "繪圖";
-        }
-        if (generateButton != null)
-        {
-            generateButton.interactable = true; // 啟用按鈕
-        }
+        onComplete?.Invoke();
     }
 
+    //從生成結果中提取圖片網址。
     string ExtractImageUrl(string json)
     {
         int startIndex = json.IndexOf("https://");
@@ -238,6 +243,7 @@ public class DallePoetryPainter : MonoBehaviour
         return null;
     }
 
+    //用網址去下載圖片，並且把圖片貼到指定的 Renderer 上。
     IEnumerator DownloadAndApplyImage(string url)
     {
         UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(url);
@@ -254,25 +260,4 @@ public class DallePoetryPainter : MonoBehaviour
             Debug.LogError("圖片下載失敗：" + imageRequest.error);
         }
     }
-
-    public void GenerateImageFromPromptButton()
-    {
-        if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
-        {
-            Debug.LogError("請設定 API 金鑰與貼圖物件！");
-            return;
-        }
-
-        if (buttonText != null)
-        {
-            buttonText.text = "生成圖片中...";
-        }
-
-        if (generateButton != null)
-        {
-            generateButton.interactable = false; // 禁用按鈕
-        }
-        StartCoroutine(GenerateImageFromChinesePoetry());
-    }
-
 }

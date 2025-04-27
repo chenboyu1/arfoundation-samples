@@ -120,12 +120,13 @@ public class GoogleSpeechToText : MonoBehaviour
             if (recordedClip != null)
             {
                 StartCoroutine(UploadAudio()); // 上傳錄音
+                btnName.text = "辨識中";
             }
             else
             {
                 Debug.LogError("8錄音片段為空，無法進行語音辨識！");
+                btnName.text = "語音";
             }
-            btnName.text = "語音";
         }
         else
         {
@@ -138,7 +139,6 @@ public class GoogleSpeechToText : MonoBehaviour
 
     IEnumerator UploadAudio()
     {
-        btnName.text = "辨識中...";
 
         if (!File.Exists(audioFilePath))
         {
@@ -185,8 +185,8 @@ public class GoogleSpeechToText : MonoBehaviour
                 Debug.LogError("12語音辨識失敗：" + www.error);
                 Debug.LogError("13錯誤詳細訊息：" + www.downloadHandler.text);
             }
+            btnName.text = "語音";
         }
-        btnName.text = "語音";
     }
 
     private void ProcessSpeechToTextResponse(string jsonResponse)
