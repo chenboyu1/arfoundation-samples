@@ -18,7 +18,7 @@ public class DallePoetryPainter : MonoBehaviour
     public Button generateButton;
     public TextMeshProUGUI buttonText;
 
-    [Header("詩詞（英文提示語）")]
+    [Header("詩詞（中文提示語）")]
     [TextArea(3, 5)]
     public string promptText = "A peaceful bamboo forest under the moonlight";
 
@@ -28,6 +28,11 @@ public class DallePoetryPainter : MonoBehaviour
     [Header("進度條元件")]
     public Slider progressBar;
 
+    [Header("額外控制按鈕")]
+    public Button clearImageButton;
+    public Button toggleImageButton; // 用來切換顯示/隱藏圖片
+    public TextMeshProUGUI toggleButtonText; // 用來顯示「隱藏圖片」/「顯示圖片」文字
+
     private string chatGptApiKey;
     private string chatGPTJsonFilePath;
 
@@ -35,6 +40,16 @@ public class DallePoetryPainter : MonoBehaviour
     void Start()
     {
         progressBar.gameObject.SetActive(false); //進度條隱藏
+
+        clearImageButton.gameObject.SetActive(false);
+        toggleImageButton.gameObject.SetActive(false);
+
+        if (clearImageButton != null)
+            clearImageButton.onClick.AddListener(ClearImage);
+
+        if (toggleImageButton != null)
+            toggleImageButton.onClick.AddListener(ToggleImageVisibility);
+        
         chatGPTJsonFilePath = Path.Combine(Application.streamingAssetsPath, "chatGPT API.json");
         StartCoroutine(LoadApiKey2(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
         chatGptApiKey = LoadApiKey(chatGPTJsonFilePath, "api_key");
@@ -276,5 +291,30 @@ public class DallePoetryPainter : MonoBehaviour
         progressBar.value = 1f;
         yield return new WaitForSeconds(1f); // 可選：短暫顯示完成
         progressBar.gameObject.SetActive(false); // 關閉進度條
+                                                 
+        clearImageButton.gameObject.SetActive(true);// 顯示按鈕
+        toggleImageButton.gameObject.SetActive(true);
+        toggleButtonText.text = "隱藏圖片";
+    }
+
+    private bool isImageVisible = true;
+
+    // 清除圖片（設為空白）
+    public void ClearImage()
+    {
+        targetImage.sprite = null;
+        targetImage.color = new Color(1, 1, 1, 0); // 確保圖片也不可見
+        clearImageButton.gameObject.SetActive(false);
+        toggleImageButton.gameObject.SetActive(false);
+        Debug.Log("圖片已清除");
+    }
+
+    // 切換圖片顯示與隱藏
+    public void ToggleImageVisibility()
+    {
+        isImageVisible = !isImageVisible;
+        targetImage.color = new Color(1, 1, 1, isImageVisible ? 1f : 0f);
+        clearImageButton.gameObject.SetActive(isImageVisible);
+        toggleButtonText.text = isImageVisible ? "隱藏圖片" : "顯示圖片";
     }
 }
