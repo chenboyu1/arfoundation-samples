@@ -212,9 +212,3 @@ public class VoiceChatObject : MonoBehaviour
     }
 }
 
-
-[System.Serializable]
-public class TTSResponse
-{
-    public string audioContent;
-}
