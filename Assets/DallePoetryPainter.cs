@@ -11,24 +11,30 @@ using System;
 
 public class DallePoetryPainter : MonoBehaviour
 {
+    [Header("貼圖的目標 UI Image 元件")]
+    public Image targetImage;
+
+    [Header("生成按鈕元件")]
+    public Button generateButton;
+    public TextMeshProUGUI buttonText;
+
     [Header("詩詞（英文提示語）")]
     [TextArea(3, 5)]
     public string promptText = "A peaceful bamboo forest under the moonlight";
 
-    [Header("貼圖的目標物件")]
-    public Renderer targetRenderer;
-
     [Header("圖像尺寸")]
     public string imageSize = "1024x1024";
 
+    [Header("進度條元件")]
+    public Slider progressBar;
+
     private string chatGptApiKey;
     private string chatGPTJsonFilePath;
-    public Button generateButton; // 拖曳按鈕物件
-    public TextMeshProUGUI buttonText; // 拖曳按鈕文字物件
 
     // Start 在開始時讀取 JSON 檔案
     void Start()
     {
+        progressBar.gameObject.SetActive(false); //進度條隱藏
         chatGPTJsonFilePath = Path.Combine(Application.streamingAssetsPath, "chatGPT API.json");
         StartCoroutine(LoadApiKey2(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
         chatGptApiKey = LoadApiKey(chatGPTJsonFilePath, "api_key");
@@ -72,10 +78,7 @@ public class DallePoetryPainter : MonoBehaviour
             chatGptApiKey = apiKey;  // 將金鑰賦值給變數
             Debug.Log("成功讀取 ChatGPT API 金鑰: " + chatGptApiKey);
         }
-        else
-        {
-            //Debug.LogError("無法讀取 ChatGPT API 金鑰！");
-        }
+        targetImage.color = new Color(1, 1, 1, 0); // RGBA 中 A=0 代表完全透明
     }
 
     private IEnumerator LoadApiKey2(string filePath, string keyName, Action<string> callback)
@@ -119,7 +122,10 @@ public class DallePoetryPainter : MonoBehaviour
     //1. 按下按鈕後觸發，開始整個流程。
     public void GenerateImageFromPromptButton()
     {
-        if (string.IsNullOrEmpty(chatGptApiKey) || targetRenderer == null)
+        progressBar.value = 0f;
+        progressBar.gameObject.SetActive(true);
+
+        if (string.IsNullOrEmpty(chatGptApiKey) || targetImage == null)
         {
             Debug.LogError("請設定 API 金鑰與貼圖物件！");
             return;
@@ -128,6 +134,7 @@ public class DallePoetryPainter : MonoBehaviour
         buttonText.text = "繪圖中"; //這裡按下按鈕就改字
         generateButton.interactable = false; // 禁用按鈕
         StartCoroutine(GenerateImageFromChinesePoetry());
+        
     }
 
     //2. 準備開始翻譯
@@ -137,7 +144,6 @@ public class DallePoetryPainter : MonoBehaviour
         {
             StartCoroutine(GenerateImageFromPrompt(prompt, () =>
             {
-                //當圖片生成結束，這邊回來
                 buttonText.text = "繪圖";
                 generateButton.interactable = true;
             }));
@@ -153,12 +159,13 @@ public class DallePoetryPainter : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換在控制英文在一千字元內，盡量精簡描述畫面。" },
+            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有描述詩中畫面的中文內容轉換英文並控制在900~1000字元以內，盡量精簡描述畫面。" },
             new { role = "user", content = chinesePoem }
             }
         };
         //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，盡量精簡描述畫面，控制在 1~2 句話以內。
         //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有中文內容轉換成一千字元以下的英文描述詩中畫面"
+        //你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有描述詩中畫面的中文內容轉換英文並控制在900~1000字元以內，盡量精簡描述畫面。
 
         string jsonBody = JsonConvert.SerializeObject(body);
         UnityWebRequest request = new UnityWebRequest(url, "POST");
@@ -175,24 +182,21 @@ public class DallePoetryPainter : MonoBehaviour
             string result = request.downloadHandler.text;
             JObject json = JObject.Parse(result);
             string prompt = json["choices"]?[0]?["message"]?["content"]?.ToString();
-
-            if (!string.IsNullOrEmpty(prompt))
+            if (string.IsNullOrEmpty(prompt))
             {
-                if (prompt.Length > 1000)
-                    prompt = prompt.Substring(0, 1000);
-
-                Debug.Log("轉換後的提示語：" + prompt);
-                onPromptReady(prompt);
+                Debug.LogError("翻譯失敗，回傳內容為空");
             }
             else
             {
-                Debug.LogError("轉換失敗：回傳內容為空");
+                Debug.Log("翻譯後的英文提示語：" + prompt);
+                onPromptReady?.Invoke(prompt);
             }
         }
         else
         {
             Debug.LogError("轉換失敗：" + request.error + "\n" + request.downloadHandler.text);
         }
+        progressBar.value = 0.33f;
     }
 
     //4. 把英文提示語送給 DALL·E 生成圖片。
@@ -228,6 +232,7 @@ public class DallePoetryPainter : MonoBehaviour
             Debug.LogError("圖像生成失敗：" + request.error + "\n" + request.downloadHandler.text);
         }
 
+        progressBar.value = 0.66f;
         onComplete?.Invoke();
     }
 
@@ -242,6 +247,7 @@ public class DallePoetryPainter : MonoBehaviour
         }
         return null;
     }
+    
 
     //6. 用網址去下載圖片，並且把圖片貼到指定的 Renderer 上。
     IEnumerator DownloadAndApplyImage(string url)
@@ -252,16 +258,23 @@ public class DallePoetryPainter : MonoBehaviour
         if (imageRequest.result == UnityWebRequest.Result.Success)
         {
             Texture2D downloadedTexture = DownloadHandlerTexture.GetContent(imageRequest);
-            targetRenderer.material.mainTexture = downloadedTexture;
-            targetRenderer.material.shader = Shader.Find("Unlit/Texture");
-            Debug.Log("準備下載圖片：" + url);
+            Rect rect = new Rect(0, 0, downloadedTexture.width, downloadedTexture.height);
+            Vector2 pivot = new Vector2(0.5f, 0.5f);
+            Sprite newSprite = Sprite.Create(downloadedTexture, rect, pivot);
 
+            targetImage.sprite = newSprite;
+            targetImage.SetNativeSize(); // 可選：依照圖片原尺寸自動調整 Image 大小
+            targetImage.color = new Color(1, 1, 1, 1); // 設為完全不透明
 
-            Debug.Log("圖片已成功套用！");
+            Debug.Log("圖片已成功套用到 UI Image！");
         }
         else
         {
             Debug.LogError("圖片下載失敗：" + imageRequest.error);
         }
+
+        progressBar.value = 1f;
+        yield return new WaitForSeconds(1f); // 可選：短暫顯示完成
+        progressBar.gameObject.SetActive(false); // 關閉進度條
     }
 }
