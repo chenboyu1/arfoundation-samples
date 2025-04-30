@@ -174,7 +174,7 @@ public class DallePoetryPainter : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，將所有描述詩中畫面的中文內容轉換英文並控制在900~1000字元以內，盡量精簡描述畫面。" },
+            new { role = "system", content = "你是一位擅長圖像提示語設計的 AI，請將輸入的中文詩詞轉為適合用於圖像生成的英文提示語，背景請設定為東方古代風格，整體畫面風格古典唯美，將所有描述詩中畫面的中文內容轉換英文並控制在900~1000字元以內，盡量精簡描述畫面。" },
             new { role = "user", content = chinesePoem }
             }
         };

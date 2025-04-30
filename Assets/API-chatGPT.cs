@@ -128,7 +128,7 @@ public class ChatGPTManager : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-                new { role = "system", content = "You are a friendly AI assistant." },
+                new { role = "system", content = "你是語音助理，請使用繁體中文回答。" },
                 new { role = "user", content = message }
             }
         });
@@ -222,7 +222,7 @@ public class ChatGPTManager : MonoBehaviour
                     audioSource.clip = clip;
                     audioSource.Play();
                     Debug.Log("要語音合成的文字是：" + text);
-                    responseText.text = "播放中...";
+                    responseText.text = text;
                 }
                 else
                 {
