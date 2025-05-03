@@ -3,70 +3,62 @@ using System.IO;
 
 public static class WavUtility
 {
-    public static AudioClip ToAudioClip(byte[] data, int sampleRate = 16000)
-    {
-        float[] floatData = ConvertByteToFloat(data);
-        AudioClip audioClip = AudioClip.Create("TTS_AudioClip", floatData.Length, 1, sampleRate, false);
-        audioClip.SetData(floatData, 0);
-        return audioClip;
-    }
-
-    private static float[] ConvertByteToFloat(byte[] array)
-    {
-        int len = array.Length / 2;
-        float[] floatArr = new float[len];
-        for (int i = 0; i < len; i++)
-        {
-            short sample = (short)(array[i * 2] | (array[i * 2 + 1] << 8));
-            floatArr[i] = sample / 32768.0f;
-        }
-        return floatArr;
-    }
-
     public static byte[] FromAudioClip(AudioClip clip)
     {
+        MemoryStream stream = new MemoryStream();
+        const int headerSize = 44;
+
+        // Placeholder for header
+        for (int i = 0; i < headerSize; i++) stream.WriteByte(0);
+
         float[] samples = new float[clip.samples * clip.channels];
         clip.GetData(samples, 0);
 
+        short[] intData = new short[samples.Length];
         byte[] bytesData = new byte[samples.Length * 2];
+
+        const float rescaleFactor = 32767; // To convert float to Int16
+
         for (int i = 0; i < samples.Length; i++)
         {
-            short value = (short)(samples[i] * 32767);
-            bytesData[i * 2] = (byte)(value & 0xFF);
-            bytesData[i * 2 + 1] = (byte)((value >> 8) & 0xFF);
+            intData[i] = (short)(samples[i] * rescaleFactor);
+            byte[] byteArr = System.BitConverter.GetBytes(intData[i]);
+            byteArr.CopyTo(bytesData, i * 2);
         }
 
-        return bytesData;
+        stream.Write(bytesData, 0, bytesData.Length);
+
+        stream.Seek(0, SeekOrigin.Begin);
+
+        int fileSize = (int)stream.Length - 8;
+
+        // ChunkID "RIFF"
+        stream.Write(System.Text.Encoding.ASCII.GetBytes("RIFF"), 0, 4);
+        stream.Write(System.BitConverter.GetBytes(fileSize), 0, 4);
+        stream.Write(System.Text.Encoding.ASCII.GetBytes("WAVE"), 0, 4);
+
+        // Subchunk1ID "fmt "
+        stream.Write(System.Text.Encoding.ASCII.GetBytes("fmt "), 0, 4);
+        stream.Write(System.BitConverter.GetBytes(16), 0, 4); // Subchunk1Size
+        stream.Write(System.BitConverter.GetBytes((short)1), 0, 2); // AudioFormat
+        stream.Write(System.BitConverter.GetBytes((short)clip.channels), 0, 2);
+        stream.Write(System.BitConverter.GetBytes(clip.frequency), 0, 4);
+        stream.Write(System.BitConverter.GetBytes(clip.frequency * clip.channels * 2), 0, 4); // ByteRate
+        stream.Write(System.BitConverter.GetBytes((short)(clip.channels * 2)), 0, 2); // BlockAlign
+        stream.Write(System.BitConverter.GetBytes((short)16), 0, 2); // BitsPerSample
+
+        // Subchunk2ID "data"
+        stream.Write(System.Text.Encoding.ASCII.GetBytes("data"), 0, 4);
+        stream.Write(System.BitConverter.GetBytes(bytesData.Length), 0, 4);
+
+        stream.Position = 0;
+        return stream.ToArray();
     }
 
+    // 儲存 WAV 檔案至指定路徑
     public static void FromAudioClipToFile(AudioClip clip, string filePath)
     {
-        byte[] wavData = FromAudioClip(clip);
-
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
-        {
-            // WAV 標頭
-            int headerSize = 44;
-            int fileSize = wavData.Length + headerSize - 8;
-
-            fileStream.Write(System.Text.Encoding.ASCII.GetBytes("RIFF"), 0, 4);
-            fileStream.Write(System.BitConverter.GetBytes(fileSize), 0, 4);
-            fileStream.Write(System.Text.Encoding.ASCII.GetBytes("WAVE"), 0, 4);
-            fileStream.Write(System.Text.Encoding.ASCII.GetBytes("fmt "), 0, 4);
-            fileStream.Write(System.BitConverter.GetBytes(16), 0, 4); // Subchunk1Size
-            fileStream.Write(System.BitConverter.GetBytes((short)1), 0, 2); // PCM
-            fileStream.Write(System.BitConverter.GetBytes((short)clip.channels), 0, 2);
-            fileStream.Write(System.BitConverter.GetBytes(clip.frequency), 0, 4);
-            int byteRate = clip.frequency * clip.channels * 2;
-            fileStream.Write(System.BitConverter.GetBytes(byteRate), 0, 4);
-            short blockAlign = (short)(clip.channels * 2);
-            fileStream.Write(System.BitConverter.GetBytes(blockAlign), 0, 2);
-            fileStream.Write(System.BitConverter.GetBytes((short)16), 0, 2); // bits per sample
-            fileStream.Write(System.Text.Encoding.ASCII.GetBytes("data"), 0, 4);
-            fileStream.Write(System.BitConverter.GetBytes(wavData.Length), 0, 4);
-
-            // 音訊資料
-            fileStream.Write(wavData, 0, wavData.Length);
-        }
+        byte[] wavData = FromAudioClip(clip); // 取得 WAV 資料
+        File.WriteAllBytes(filePath, wavData);  // 將資料寫入指定路徑的檔案
     }
 }

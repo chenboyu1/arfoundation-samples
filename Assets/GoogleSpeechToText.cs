@@ -115,7 +115,6 @@ public class GoogleSpeechToText : MonoBehaviour
             voiceRecorder.StopRecording();
             isRecording = false;
             Debug.LogWarning("7錄音結束，開始進行語音辨識...");
-            btnName.text = "結束錄音";
 
             recordedClip = voiceRecorder.GetRecordedClip();
             if (recordedClip != null)

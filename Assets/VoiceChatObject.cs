@@ -211,4 +211,3 @@ public class VoiceChatObject : MonoBehaviour
         return json.Substring(start, end - start);
     }
 }
-
