@@ -47,3 +47,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: QRCode
     m_Texture: {fileID: 2800000, guid: a6fd8503774c0402aa403884f5b77f39, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5409627710487211746
+      m_GuidHigh: 17370651765076464058
+    m_SerializedTextureGuid:
+      m_GuidLow: 10778466097801898612
+      m_GuidHigh: 12016589322754259577
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: S__12820484
+    m_Texture: {fileID: 0}

@@ -9,7 +9,6 @@ using TMPro;
 using System;
 using UnityEngine.Audio;
 
-
 public class ChatGPTManager : MonoBehaviour
 {
     private string chatGptApiKey;
@@ -19,136 +18,96 @@ public class ChatGPTManager : MonoBehaviour
 
     private string chatGPTJsonFilePath;
     private string googleJsonFilePath;
-    public AudioSource audioSource; // 定義 AudioSource 變數
+    public AudioSource audioSource;
 
-    public TMP_InputField userInput; // 使用者輸入框
-    public TMP_Text responseText;    // 顯示 ChatGPT 回應的 UI 文字
+    public TMP_InputField userInput;
+    public TMP_Text responseText;
+
     void Start()
     {
-        // 設定 JSON 檔案路徑
         chatGPTJsonFilePath = Path.Combine(Application.streamingAssetsPath, "chatGPT API.json");
         googleJsonFilePath = Path.Combine(Application.streamingAssetsPath, "AR-MR-google_credentials.json");
 
-        // 讀取 API 金鑰
         StartCoroutine(LoadApiKey(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
         StartCoroutine(LoadApiKey(googleJsonFilePath, "private_key", OnApiKeyLoaded2));
-        // 讀取 API 金鑰
+
         chatGptApiKey = LoadApiKey(chatGPTJsonFilePath, "api_key");
         googleApiKey = LoadApiKey(googleJsonFilePath, "private_key");
 
-        if (string.IsNullOrEmpty(chatGptApiKey))
+        if (audioSource == null)
         {
-            Debug.LogError("無法讀取 ChatGPT API 金鑰，請檢查 chatGPT API.json 檔案！");
-        }
-        else
-        {
-            Debug.Log("成功讀取 ChatGPT API 金鑰");
-        }
-
-        if (string.IsNullOrEmpty(googleApiKey))
-        {
-            Debug.LogError("無法讀取 Google Speech-to-Text API 金鑰，請檢查 AR-MR-google_credentials.json 檔案！");
-        }
-        else
-        {
-            Debug.Log("成功讀取 Google Speech-to-Text API 金鑰");
+            audioSource = GetComponent<AudioSource>();
         }
     }
+
     private string LoadApiKey(string filePath, string keyName)
     {
         if (!File.Exists(filePath))
-        {
-            Debug.LogError("找不到 JSON 檔案：" + filePath);
             return null;
-        }
 
         try
         {
             string jsonContent = File.ReadAllText(filePath);
             JObject json = JObject.Parse(jsonContent);
-            return json[keyName]?.ToString(); // 讀取指定的 Key
+            return json[keyName]?.ToString();
         }
-        catch (System.Exception ex)
+        catch (Exception)
         {
-            Debug.LogError("讀取 JSON 檔案錯誤：" + ex.Message);
             return null;
         }
     }
-    // 回調函數處理加載的 API Key
+
     void OnApiKeyLoaded(string apiKey)
     {
         if (!string.IsNullOrEmpty(apiKey))
         {
-            chatGptApiKey = apiKey;  // 將金鑰賦值給變數
-            Debug.Log("成功讀取 ChatGPT API 金鑰: " + chatGptApiKey);
-        }
-        else
-        {
-            //Debug.LogError("無法讀取 ChatGPT API 金鑰！");
+            chatGptApiKey = apiKey;
         }
     }
+
     void OnApiKeyLoaded2(string apiKey)
     {
         if (!string.IsNullOrEmpty(apiKey))
         {
-            googleApiKey = apiKey;  // 將金鑰賦值給變數
-            Debug.Log("成功讀取 google API 金鑰: " + googleApiKey);
-        }
-        else
-        {
-            //Debug.LogError("無法讀取 ChatGPT API 金鑰！");
+            googleApiKey = apiKey;
         }
     }
-    /// <summary>
-    /// 讀取指定 JSON 檔案中的 API Key
-    /// </summary>
+
     private IEnumerator LoadApiKey(string filePath, string keyName, Action<string> callback)
     {
-        // Android 平台需要使用 UnityWebRequest 來讀取嵌入的文件
         if (filePath.Contains("://") || filePath.Contains("file://"))
         {
             UnityWebRequest www = UnityWebRequest.Get(filePath);
-            yield return www.SendWebRequest(); // 等待請求完成
+            yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                string jsonContent = www.downloadHandler.text;
-                // 解析 JSON
-                Debug.Log("File content: " + jsonContent);
-
                 try
                 {
-                    JObject json = JObject.Parse(jsonContent);
-                    string apiKey = json[keyName]?.ToString(); // 讀取指定的 Key
-                    callback(apiKey); // 調用回調傳遞金鑰
+                    JObject json = JObject.Parse(www.downloadHandler.text);
+                    callback(json[keyName]?.ToString());
                 }
-                catch (JsonException ex)
+                catch (JsonException)
                 {
-                    Debug.LogError("JSON 解析錯誤：" + ex.Message);
-                    callback(null); // 發生錯誤時回調返回 null
+                    callback(null);
                 }
             }
             else
             {
-                Debug.LogError("Failed to load JSON file: " + www.error);
-                callback(null); // 請求失敗時回調返回 null
+                callback(null);
             }
         }
         else
         {
-            callback(null); // 如果路徑不正確，回調返回 null
+            callback(null);
         }
     }
 
-
-
     public void SendMessageToChatGPT()
     {
-        Debug.LogWarning("function call");
-        string userMessage = userInput.text; // 讀取輸入框的文字
-        if (!string.IsNullOrEmpty(userMessage)) // 確保輸入不是空的
+        string userMessage = userInput.text;
+        if (!string.IsNullOrEmpty(userMessage))
         {
-            Debug.LogWarning("send request");
             StartCoroutine(SendChatGPTRequest(userMessage));
         }
         else
@@ -160,10 +119,7 @@ public class ChatGPTManager : MonoBehaviour
     private IEnumerator SendChatGPTRequest(string message)
     {
         if (string.IsNullOrEmpty(chatGptApiKey))
-        {
-            Debug.LogError("ChatGPT API 金鑰尚未載入！");
             yield break;
-        }
 
         responseText.text = "等待 ChatGPT 回應中...";
 
@@ -172,8 +128,8 @@ public class ChatGPTManager : MonoBehaviour
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-            new { role = "system", content = "You are a friendly AI assistant." },
-            new { role = "user", content = message }
+                new { role = "system", content = "你是語音助理，請使用繁體中文回答。" },
+                new { role = "user", content = message }
             }
         });
 
@@ -187,63 +143,60 @@ public class ChatGPTManager : MonoBehaviour
             request.SetRequestHeader("Authorization", "Bearer " + chatGptApiKey);
 
             yield return request.SendWebRequest();
-            Debug.LogWarning("已送出請求到 ChatGPT");
 
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string responseJson = request.downloadHandler.text;
-                Debug.LogWarning("API 回應：" + responseJson);
+                var response = JsonConvert.DeserializeObject<ChatGPTResponse>(responseJson);
 
-                try
+                if (response.choices.Length > 0)
                 {
-                    var response = JsonConvert.DeserializeObject<ChatGPTResponse>(responseJson);
-                    if (response.choices.Length > 0)
-                    {
-                        string chatGPTReply = response.choices[0].message.content;
-                        Debug.Log("ChatGPT 回覆：" + chatGPTReply);
-
-                        responseText.text = chatGPTReply; // 顯示文字
-
-                        //  呼叫語音合成並播放
-                        StartCoroutine(SynthesizeAndPlay(chatGPTReply));
-                    }
-                    else
-                    {
-                        responseText.text = "ChatGPT 沒有回應，請稍後再試。";
-                    }
+                    string chatGPTReply = response.choices[0].message.content;
+                    responseText.text = chatGPTReply;
+                    StartCoroutine(SynthesizeAndPlay(chatGPTReply));
                 }
-                catch (JsonException jsonEx)
+                else
                 {
-                    Debug.LogError("JSON 解析錯誤：" + jsonEx.Message);
-                    responseText.text = "API 回應格式錯誤！";
+                    responseText.text = "ChatGPT 沒有回應，請稍後再試。";
                 }
             }
             else
             {
-                Debug.LogError("API 請求失敗: " + request.error);
                 responseText.text = "錯誤：" + request.error;
             }
         }
     }
 
+    // 【修改區】TTS 合成並播放（改用 MP3）
     private IEnumerator SynthesizeAndPlay(string text)
     {
         responseText.text = "正在合成語音...";
 
-        string ttsUrl = $"https://speech.googleapis.com/v1/speech:recognize?key={googleApiKey}";
+        string ttsUrl = $"https://texttospeech.googleapis.com/v1/text:synthesize?key={googleApiKey}";
+
+        string languageCode = IsEnglish(text) ? "en-US" : "zh-TW";
+        string voiceName = IsEnglish(text) ? "en-US-Wavenet-F" : "cmn-TW-Wavenet-A";
 
         var ttsRequest = new
         {
             input = new { text = text },
-            voice = new { languageCode = "zh-TW", ssmlGender = "FEMALE" },
-            audioConfig = new { audioEncoding = "LINEAR16" }
+            voice = new
+            {
+                languageCode = languageCode,
+                name = voiceName,
+                ssmlGender = "FEMALE"
+            },
+            audioConfig = new
+            {
+                audioEncoding = "MP3", // 【改成 MP3】
+                speakingRate = 1.2f
+            }
         };
 
         string jsonData = JsonConvert.SerializeObject(ttsRequest);
 
         UnityWebRequest request = new UnityWebRequest(ttsUrl, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonData));
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -251,17 +204,35 @@ public class ChatGPTManager : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("TTS 合成成功");
-
             var ttsResponse = JsonConvert.DeserializeObject<TTSResponse>(request.downloadHandler.text);
             byte[] audioData = Convert.FromBase64String(ttsResponse.audioContent);
 
-            // 播放
-            AudioClip clip = WavUtility.ToAudioClip(audioData, 16000); // 確保你有 WavUtility！
-            audioSource.clip = clip;
-            audioSource.Play();
+            // 【存檔】
+            string path = Path.Combine(Application.persistentDataPath, "temp_tts.mp3");
+            File.WriteAllBytes(path, audioData);
 
-            responseText.text = "播放中...";
+            // 【用 UnityWebRequestMultimedia 讀成 AudioClip】
+            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.MPEG))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                    audioSource.clip = clip;
+                    audioSource.Play();
+                    Debug.Log("要語音合成的文字是：" + text);
+                    responseText.text = text;
+                }
+                else
+                {
+                    Debug.LogError("載入 MP3 AudioClip 失敗: " + www.error);
+                    responseText.text = "播放失敗！";
+                }
+            }
+
+            // 【可選】播放完刪除檔案
+            // File.Delete(path);
         }
         else
         {
@@ -270,18 +241,21 @@ public class ChatGPTManager : MonoBehaviour
         }
     }
 
-
-
-
-
+    private bool IsEnglish(string input)
+    {
+        int englishCount = 0;
+        foreach (char c in input)
+        {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+                englishCount++;
+        }
+        return englishCount > input.Length / 2;
+    }
 
     public IEnumerator SendAudioToGoogleSpeech(byte[] audioData)
     {
         if (string.IsNullOrEmpty(googleApiKey))
-        {
-            Debug.LogError("Google API 金鑰尚未載入！");
             yield break;
-        }
 
         string fullUrl = googleApiUrl + googleApiKey;
 
@@ -291,28 +265,23 @@ public class ChatGPTManager : MonoBehaviour
             {
                 encoding = "LINEAR16",
                 sampleRateHertz = 16000,
-                languageCode = "zh-TW" // 可改成你要的語言
+                languageCode = "zh-TW"
             },
             audio = new
             {
-                content = System.Convert.ToBase64String(audioData) // 轉成 Base64
+                content = Convert.ToBase64String(audioData)
             }
         };
 
         string jsonPayload = JsonConvert.SerializeObject(requestData);
-        byte[] postData = Encoding.UTF8.GetBytes(jsonPayload);
 
         using (UnityWebRequest request = new UnityWebRequest(fullUrl, "POST"))
         {
-            request.uploadHandler = new UploadHandlerRaw(postData);
-            Debug.LogWarning("1");
+            request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonPayload));
             request.downloadHandler = new DownloadHandlerBuffer();
-            Debug.LogWarning("2");
             request.SetRequestHeader("Content-Type", "application/json");
-            Debug.LogWarning("3");
 
             yield return request.SendWebRequest();
-            Debug.LogWarning("4");
 
             if (request.result == UnityWebRequest.Result.Success)
             {
@@ -326,7 +295,13 @@ public class ChatGPTManager : MonoBehaviour
     }
 }
 
-// 定義 JSON 解析類別
+// 資料結構
+[System.Serializable]
+public class TTSResponse
+{
+    public string audioContent;
+}
+
 [System.Serializable]
 public class ChatGPTResponse
 {
