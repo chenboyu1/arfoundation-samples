@@ -64,6 +64,6 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         objectToShow.transform.rotation = Quaternion.identity;
 
         // 或者鎖定特定軸向
-        // transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        objectToShow.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 }
