@@ -63,6 +63,16 @@ public class DallePoetryPainter : MonoBehaviour
         }
     }
 
+    #if UNITY_ANDROID && !UNITY_EDITOR
+    void OnEnable()
+    {
+        if (string.IsNullOrEmpty(chatGptApiKey))
+        {
+            StartCoroutine(LoadApiKey2(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
+        }
+    }
+    #endif
+
     // Åª¨ú API ª÷Æ_
     private string LoadApiKey(string filePath, string keyName)
     {

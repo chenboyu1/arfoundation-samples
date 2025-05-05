@@ -40,6 +40,19 @@ public class ChatGPTManager : MonoBehaviour
         }
     }
 
+    #if UNITY_ANDROID && !UNITY_EDITOR
+    void OnEnable()
+    {
+        if (string.IsNullOrEmpty(chatGptApiKey))
+        {
+            StartCoroutine(LoadApiKey(chatGPTJsonFilePath, "api_key", OnApiKeyLoaded));
+        }
+        if (string.IsNullOrEmpty(googleApiKey))
+        {
+            StartCoroutine(LoadApiKey(googleJsonFilePath, "private_key", OnApiKeyLoaded2));
+        }
+    }
+    #endif
     private string LoadApiKey(string filePath, string keyName)
     {
         if (!File.Exists(filePath))

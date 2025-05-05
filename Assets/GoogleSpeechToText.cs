@@ -48,31 +48,57 @@ public class GoogleSpeechToText : MonoBehaviour
             Debug.LogWarning("Clear Button 尚未綁定！");
         }
     }
-
+    void OnEnable()
+    {
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            StartCoroutine(LoadKey("AR-MR-google_credentials.json", "private_key", OnApiKeyLoaded2));
+        }
+    }
     // 修改後的 API 金鑰讀取方法
     private IEnumerator LoadKey(string fileName, string keyName, Action<string> callback)
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-    //filePath = "jar:file://" + filePath;
-#endif
-
         Debug.LogWarning("101嘗試讀取 JSON 路徑: " + filePath);
 
-        UnityWebRequest www = UnityWebRequest.Get(filePath);
-        yield return www.SendWebRequest();
+        #if UNITY_ANDROID && !UNITY_EDITOR
+            UnityWebRequest www = UnityWebRequest.Get(filePath);
+            yield return www.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.Success)
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonContent = www.downloadHandler.text;
+                Debug.LogWarning("102讀取成功");
+
+                try
+                {
+                    JObject json = JObject.Parse(jsonContent);
+                    apiKey = json[keyName]?.ToString();
+                Debug.LogWarning("102 APIkey: " + apiKey);
+                callback(apiKey);
+                }
+                catch (JsonException ex)
+                {
+                    Debug.LogError("103JSON 解析錯誤：" + ex.Message);
+                    callback(null);
+                }
+            }
+            else
+            {
+                Debug.LogError("104載入 JSON 檔案失敗：" + www.error);
+                callback(null);
+            }
+        #else
+        if (File.Exists(filePath))
         {
-            string jsonContent = www.downloadHandler.text;
+            string jsonContent = File.ReadAllText(filePath);
             Debug.LogWarning("102讀取成功");
 
             try
             {
                 JObject json = JObject.Parse(jsonContent);
-                string apiKey = json[keyName]?.ToString();
-                callback(apiKey); // 回傳 API key
+                apiKey = json[keyName]?.ToString();
+                callback(apiKey);
             }
             catch (JsonException ex)
             {
@@ -82,9 +108,11 @@ public class GoogleSpeechToText : MonoBehaviour
         }
         else
         {
-            Debug.LogError("104載入 JSON 檔案失敗：" + www.error);
+            Debug.LogError("104載入 JSON 檔案失敗：檔案不存在");
             callback(null);
         }
+        yield break;
+        #endif
     }
 
 
@@ -140,16 +168,33 @@ public class GoogleSpeechToText : MonoBehaviour
 
     IEnumerator UploadAudio()
     {
+        Debug.LogWarning("=== UploadAudio START ===");
+        Debug.LogWarning("API Key: " + apiKey);
+        Debug.LogWarning("Audio File Path: " + audioFilePath);
+        Debug.LogWarning("File Exists: " + File.Exists(audioFilePath));
 
-        if (!File.Exists(audioFilePath))
+        if (string.IsNullOrEmpty(apiKey))
         {
-            Debug.LogError("10錄音檔案未找到：" + audioFilePath);
+            Debug.LogError("API key is missing. Cannot proceed with the request.");
             yield break;
         }
 
-        byte[] audioData = File.ReadAllBytes(audioFilePath);
-        string base64Audio = System.Convert.ToBase64String(audioData);
+        if (!File.Exists(audioFilePath))
+        {
+            Debug.LogError("Audio file not found at: " + audioFilePath);
+            yield break;
+        }
 
+        Debug.LogWarning("Uploading audio. File path: " + audioFilePath);
+
+        byte[] audioData = File.ReadAllBytes(audioFilePath);
+        if (audioData == null || audioData.Length == 0)
+        {
+            Debug.LogError("Audio data is empty. Please check if recording succeeded.");
+            yield break;
+        }
+
+        string base64Audio = Convert.ToBase64String(audioData);
         string url = $"https://speech.googleapis.com/v1/speech:recognize?key={apiKey}";
 
         string jsonRequest = JsonConvert.SerializeObject(new
@@ -173,22 +218,29 @@ public class GoogleSpeechToText : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "application/json");
 
+            Debug.LogWarning("Sending speech recognition request...");
+
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
                 string jsonResponse = www.downloadHandler.text;
-                Debug.LogWarning("11語音辨識結果: " + jsonResponse);
+                Debug.LogWarning("Speech recognition successful. Response: " + jsonResponse);
                 ProcessSpeechToTextResponse(jsonResponse);
             }
             else
             {
-                Debug.LogError("12語音辨識失敗：" + www.error);
-                Debug.LogError("13錯誤詳細訊息：" + www.downloadHandler.text);
+                Debug.LogError("Speech recognition failed: " + www.error);
+                Debug.LogError("Error details: " + www.downloadHandler.text);
             }
-            btnName.text = "語音";
+
+            if (btnName != null)
+            {
+                btnName.text = "語音";
+            }
         }
     }
+
 
     private void ProcessSpeechToTextResponse(string jsonResponse)
     {
