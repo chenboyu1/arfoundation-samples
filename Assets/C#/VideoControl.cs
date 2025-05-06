@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -10,33 +10,36 @@ public class VideoToggle : MonoBehaviour
         public string name;
         public VideoPlayer videoPlayer;
         public RawImage rawImage;
-        [HideInInspector] public bool isPlaying = false;
+        [HideInInspector] 
+        public bool isPlaying = false;
     }
-
     public VideoGroup[] videoGroups;
+
+    public GameObject[] hiddenWhilePlaying;  // ğŸ‘‰ æŒ‡å®šè¦åœ¨æ’­æ”¾æ™‚éš±è—çš„ç‰©ä»¶ï¼ˆå¦‚ Quadï¼‰
 
     private int currentPlayingIndex = -1;
 
     void Start()
     {
-        // ¤@¶}©l¥ş³¡ÁôÂÃ¨Ã°±¤î
         foreach (var group in videoGroups)
         {
             group.videoPlayer.Stop();
             group.rawImage.enabled = false;
             group.isPlaying = false;
         }
+
+        // ç¢ºä¿èµ·å§‹æ™‚è¦é¡¯ç¤ºçš„ç‰©ä»¶éƒ½é¡¯ç¤º
+        SetObjectsActive(hiddenWhilePlaying, true);
     }
 
     public void ToggleVideoByIndex(int index)
     {
         if (index < 0 || index >= videoGroups.Length)
         {
-            Debug.LogWarning("µL®Äªº¼v¤ù¯Á¤Ş");
+            Debug.LogWarning("ç„¡æ•ˆçš„å½±ç‰‡ç´¢å¼•");
             return;
         }
 
-        // ¦pªGÂI¨ìªº¬O¥¿¦b¼½©ñªº¼v¤ù¡A«hÃö³¬¥¦
         if (videoGroups[index].isPlaying)
         {
             StopVideo(index);
@@ -44,13 +47,11 @@ public class VideoToggle : MonoBehaviour
         }
         else
         {
-            // Ãö³¬¨ä¥L¼½©ñ¤¤ªº¼v¤ù
             if (currentPlayingIndex != -1)
             {
                 StopVideo(currentPlayingIndex);
             }
 
-            // ¼½©ñ¿ï¨úªº¼v¤ù
             PlayVideo(index);
             currentPlayingIndex = index;
         }
@@ -62,6 +63,9 @@ public class VideoToggle : MonoBehaviour
         group.rawImage.enabled = true;
         group.videoPlayer.Play();
         group.isPlaying = true;
+
+        // æ’­æ”¾æ™‚éš±è—æŒ‡å®šç‰©ä»¶ï¼ˆå¦‚ Quadï¼‰
+        SetObjectsActive(hiddenWhilePlaying, false);
     }
 
     private void StopVideo(int index)
@@ -70,5 +74,18 @@ public class VideoToggle : MonoBehaviour
         group.videoPlayer.Stop();
         group.rawImage.enabled = false;
         group.isPlaying = false;
+
+        // åœæ­¢æ™‚é‚„åŸé¡¯ç¤ºæŒ‡å®šç‰©ä»¶
+        SetObjectsActive(hiddenWhilePlaying, true);
+    }
+
+    private void SetObjectsActive(GameObject[] objects, bool active)
+    {
+        if (objects == null) return;
+        foreach (var obj in objects)
+        {
+            if (obj != null)
+                obj.SetActive(active);
+        }
     }
 }
