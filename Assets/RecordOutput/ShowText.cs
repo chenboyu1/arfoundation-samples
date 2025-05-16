@@ -5,6 +5,7 @@ public class ShowText : MonoBehaviour
 {
     public AudioSource audioSource;         // 播放語音
     public TMP_Text displayText;            // 顯示的文字內容
+    public bool showtext = false; //控制文字顯示
 
     private string textContent = @" 「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一，最早的創作者不知歸誰。「吳聲歌曲」流行於長江下游的江南一帶，以六朝古都建康為中心，盛行於古代吳地，內容多是歌詠男女情愛，源流可追溯至春秋戰國時期的民歌。
 
@@ -37,7 +38,7 @@ public class ShowText : MonoBehaviour
     void Update()
     {
         // 根據播放狀態控制文字顯示
-        if (audioSource != null && displayText != null)
+        /*if (audioSource != null && displayText != null)
         {
             if (audioSource.isPlaying)
             {
@@ -48,7 +49,7 @@ public class ShowText : MonoBehaviour
             {
                 displayText.gameObject.SetActive(false);
             }
-        }
+        }*/
     }
 
     public void OnClickPlay()
@@ -60,15 +61,20 @@ public class ShowText : MonoBehaviour
         }
 
         // 點擊後播放或停止語音
-        if (!audioSource.isPlaying)
+        if (!showtext)
         {
             audioSource.Play();
+            displayText.gameObject.SetActive(true);
+            displayText.text = textContent;
+            showtext = true;
             Debug.Log("播放語音");
         }
         else
         {
             audioSource.Stop();
             Debug.Log("停止語音");
+            displayText.gameObject.SetActive(false);
+            showtext = false;
         }
     }
 }

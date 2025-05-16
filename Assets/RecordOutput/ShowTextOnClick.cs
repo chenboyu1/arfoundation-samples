@@ -5,6 +5,7 @@ public class ShowTextOnClick : MonoBehaviour
 {
     public AudioSource audioSource;         // 播放語音
     public TMP_Text displayText;            // 顯示的文字內容
+    public bool showtext = false; //控制文字顯示
 
     private string textContent = @" 明 唐寅 尺牘
 此作為唐寅致行臺大人餘山先生的書信，內容中提請其多加照顧友人盧鈇，並隨信奉上五斤乳餅，以感謝對方平日的關照。乳餅在明代為常見的日用食品，鄺璠的《便民圖纂》中便詳細記載了乳餅的製作和保存方式，足見此物之普及。
@@ -16,6 +17,7 @@ public class ShowTextOnClick : MonoBehaviour
         // 初始化：隱藏文字
         if (displayText != null)
         {
+            showtext = false;
             displayText.gameObject.SetActive(false);
         }
 
@@ -38,18 +40,20 @@ public class ShowTextOnClick : MonoBehaviour
     void Update()
     {
         // 根據播放狀態控制文字顯示
-        if (audioSource != null && displayText != null)
+        /*if (audioSource != null && displayText != null)
         {
-            if (audioSource.isPlaying)
+            if (!showtext)
             {
                 displayText.gameObject.SetActive(true);
                 displayText.text = textContent;
+                showtext = true;
             }
             else
             {
                 displayText.gameObject.SetActive(false);
+                showtext = false;
             }
-        }
+        }*/
     }
 
     public void OnClickPlay()
@@ -61,15 +65,20 @@ public class ShowTextOnClick : MonoBehaviour
         }
 
         // 點擊後播放或停止語音
-        if (!audioSource.isPlaying)
+        if (!showtext)
         {
             audioSource.Play();
+            displayText.gameObject.SetActive(true);
+            displayText.text = textContent;
+            showtext = true;
             Debug.Log("播放語音");
         }
         else
         {
             audioSource.Stop();
             Debug.Log("停止語音");
+            displayText.gameObject.SetActive(false);
+            showtext = false;
         }
     }
 }
