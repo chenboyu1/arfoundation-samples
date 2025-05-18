@@ -8,6 +8,9 @@ using System.Text;
 using TMPro;
 using System;
 using UnityEngine.Audio;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 public class ChatGPTManager : MonoBehaviour
 {
@@ -119,13 +122,46 @@ public class ChatGPTManager : MonoBehaviour
     public void SendMessageToChatGPT()
     {
         string userMessage = userInput.text;
+        //string userMessage = "這幅書法作品的作者是誰";
         if (!string.IsNullOrEmpty(userMessage))
         {
+            //StartCoroutine(SendChineseSentence(userMessage));
             StartCoroutine(SendChatGPTRequest(userMessage));
         }
         else
         {
             responseText.text = "請輸入訊息！";
+        }
+    }
+
+    private IEnumerator SendChineseSentence(string sentence)
+    {
+        string json = $"{{\"sentence\":\"{sentence}\"}}";
+        byte[] postData = Encoding.UTF8.GetBytes(json);
+        string pythonServerURL = "http://127.0.0.1:5000/analyze";
+
+        using (UnityWebRequest request = new UnityWebRequest(pythonServerURL, "POST"))
+        {
+            request.uploadHandler = new UploadHandlerRaw(postData);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string result = request.downloadHandler.text;
+                Debug.Log("來自 Python 回應: " + result);
+
+                // 把回應加入原本訊息後發送給 ChatGPT（或其他邏輯）
+                string updatedMessage = $"{sentence} 這是資料庫中比對到的敘述，請根據以下內容調整回應加以多做介紹：{result}";
+                StartCoroutine(SendChatGPTRequest(updatedMessage));
+            }
+            else
+            {
+                Debug.LogError("傳送失敗: " + request.error);
+                responseText.text = "資料傳送失敗：" + request.error;
+            }
         }
     }
 
