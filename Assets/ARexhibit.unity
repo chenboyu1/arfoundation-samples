@@ -13924,7 +13924,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1612986454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6cab59b0a7f5034e856239ae43b22b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d5ec3f29a5d6444b99dbd4409fefaac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToShow: {fileID: 285413319}
@@ -19490,7 +19490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2109298653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19503,6 +19503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5ec3f29a5d6444b99dbd4409fefaac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToShow: {fileID: 0}
+  distanceInFront: 500
+  vrCamera: {fileID: 0}
 --- !u!114 &2109298654
 MonoBehaviour:
   m_ObjectHideFlags: 0
