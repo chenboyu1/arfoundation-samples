@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using UnityEngine;
 using Vuforia;
 
@@ -9,6 +10,24 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
     private ObserverBehaviour observerBehaviour;
     private Rigidbody rb;
+
+    public static ShowObjectInFrontOfCamera Instance { get; private set; }
+
+    public int objectID;
+
+    void Awake()
+    {
+        // 確保只有一個實例
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 切換場景時不會被銷毀（視情況而定）
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         observerBehaviour = GetComponent<ObserverBehaviour>();
@@ -38,8 +57,18 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
         if (isTracked && vrCamera != null && objectToShow != null)
         {
-            // 將物件移動到相機正前方 distanceInFront 單位
-            Vector3 forwardPosition = vrCamera.position + vrCamera.forward * distanceInFront;
+            if(behaviour.TargetName == "ArtworkFrame")
+            {
+                objectID = 1;
+                Debug.Log("作品一");
+            }
+            else if(behaviour.TargetName == "qrcode_rgb1")
+            {
+                objectID = 2;
+                Debug.Log("作品二");
+            }
+                // 將物件移動到相機正前方 distanceInFront 單位
+                Vector3 forwardPosition = vrCamera.position + vrCamera.forward * distanceInFront;
             objectToShow.transform.position = forwardPosition;
             //objectToShow.transform.rotation = Quaternion.LookRotation(vrCamera.forward); // 讓它面對相機前方
             objectToShow.SetActive(true);

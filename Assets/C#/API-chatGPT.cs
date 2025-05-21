@@ -11,6 +11,7 @@ using UnityEngine.Audio;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 public class ChatGPTManager : MonoBehaviour
 {
@@ -122,6 +123,18 @@ public class ChatGPTManager : MonoBehaviour
     public void SendMessageToChatGPT()
     {
         string userMessage = userInput.text;
+        int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
+        Debug.Log("objectID: " + objectID);
+        if (objectID == 1)
+        {
+            userMessage += "這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信";
+            Debug.Log("這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信");
+        }
+        else if (objectID == 2)
+        {
+            userMessage += "「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一";
+            Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");
+        }
         //string userMessage = "這幅書法作品的作者是誰";
         if (!string.IsNullOrEmpty(userMessage))
         {
