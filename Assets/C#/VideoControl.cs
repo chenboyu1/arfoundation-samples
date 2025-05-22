@@ -24,12 +24,25 @@ public class VideoToggle : MonoBehaviour
         foreach (var group in videoGroups)
         {
             group.videoPlayer.Stop();
+            group.videoPlayer.Prepare(); // 預載影片
             group.rawImage.enabled = false;
             group.isPlaying = false;
         }
 
         // 確保起始時要顯示的物件都顯示
         SetObjectsActive(hiddenWhilePlaying, true);
+    }
+
+    void OnEnable()
+    {
+        foreach (var group in videoGroups)
+        {
+            group.videoPlayer.Stop();
+            group.videoPlayer.Prepare(); // 預載影片
+            Debug.Log("預載影片");
+            group.rawImage.enabled = false;
+            group.isPlaying = false;
+        }
     }
 
     public void ToggleVideoByIndex(int index)
