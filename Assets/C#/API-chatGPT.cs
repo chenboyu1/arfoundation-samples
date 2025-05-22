@@ -125,12 +125,17 @@ public class ChatGPTManager : MonoBehaviour
         string userMessage = userInput.text;
         int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
         Debug.Log("objectID: " + objectID);
-        if (objectID == 1)
+        if (objectID == 0)
         {
             userMessage += "這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信";
             Debug.Log("這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信");
         }
-        else if (objectID == 2)
+        else if (objectID == 1)
+        {
+            userMessage += "冷淘帖是王鞏（1048－？），向友人敘述已做了冷淘，並為受贈團餅而致謝。";
+            Debug.Log("冷淘帖是王鞏（1048－？），向友人敘述已做了冷淘，並為受贈團餅而致謝。");
+        }
+        else if (objectID == 10)
         {
             userMessage += "「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一";
             Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");

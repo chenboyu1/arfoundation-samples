@@ -5,6 +5,7 @@ public class ImageSetNavigator : MonoBehaviour
     public Transform imageSetContainer; // 所有圖片組的共同父物件
     private GameObject[] imageSets;
     private int currentIndex = 0;
+    int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
 
     void Start()
     {
@@ -40,5 +41,6 @@ public class ImageSetNavigator : MonoBehaviour
         {
             imageSets[i].SetActive(i == index);
         }
+        ShowObjectInFrontOfCamera.Instance.objectID = index;
     }
 }

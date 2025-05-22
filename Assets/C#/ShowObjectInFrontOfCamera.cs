@@ -59,12 +59,12 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         {
             if(behaviour.TargetName == "ArtworkFrame")
             {
-                objectID = 1;
+                objectID = 0;
                 Debug.Log("作品一");
             }
             else if(behaviour.TargetName == "qrcode_rgb1")
             {
-                objectID = 2;
+                objectID = 10;
                 Debug.Log("作品二");
             }
                 // 將物件移動到相機正前方 distanceInFront 單位
