@@ -30,6 +30,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
     }
     void Start()
     {
+        Debug.Log("imagetarget");
         observerBehaviour = GetComponent<ObserverBehaviour>();
         if (observerBehaviour != null)
         {

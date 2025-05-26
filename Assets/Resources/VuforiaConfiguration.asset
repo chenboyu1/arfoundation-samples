@@ -18,13 +18,13 @@ MonoBehaviour:
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 2
     virtualSceneScaleFactor: 1
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
     logLevel: 0
     version: 11.1.3
-    eulaAcceptedVersions: '{"Values":["8.5","11.0","0.0","11.1"]}'
+    eulaAcceptedVersions: '{"Values":["8.5","11.0","0.0","11.1","11.2"]}'
   database:
     disableModelExtraction: 0
   plugins:
