@@ -3002,7 +3002,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 685448775}
-  m_Father: {fileID: 432784295}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285713033
 GameObject:
@@ -4687,8 +4687,9 @@ GameObject:
   - component: {fileID: 432784294}
   - component: {fileID: 432784293}
   - component: {fileID: 432784296}
+  - component: {fileID: 432784297}
   m_Layer: 0
-  m_Name: ImageTarget2
+  m_Name: "ImageTarget(\u6625\u6C5F\u82B1\u6708\u591C)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4764,7 +4765,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 432784296}
+  mPreview: {fileID: 432784297}
 --- !u!4 &432784295
 Transform:
   m_ObjectHideFlags: 0
@@ -4777,11 +4778,26 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 285413320}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &432784296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432784291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5ec3f29a5d6444b99dbd4409fefaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToShow: {fileID: 285413319}
+  distanceInFront: 500
+  vrCamera: {fileID: 556144594}
+  objectID: 0
+--- !u!114 &432784297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5808,7 +5824,7 @@ Transform:
   m_Children:
   - {fileID: 1921957073}
   - {fileID: 599260081}
-  m_Father: {fileID: 1031077318}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &556144593
 GameObject:
@@ -11868,8 +11884,9 @@ GameObject:
   - component: {fileID: 1031077317}
   - component: {fileID: 1031077316}
   - component: {fileID: 1031077319}
+  - component: {fileID: 1031077320}
   m_Layer: 0
-  m_Name: ImageTarget
+  m_Name: "ImageTarget(\u756B\u6846\u4F5C\u54C1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11945,7 +11962,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1031077319}
+  mPreview: {fileID: 1031077320}
 --- !u!4 &1031077318
 Transform:
   m_ObjectHideFlags: 0
@@ -11958,11 +11975,26 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 551279703}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1031077319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031077314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5ec3f29a5d6444b99dbd4409fefaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToShow: {fileID: 551279702}
+  distanceInFront: 500
+  vrCamera: {fileID: 556144594}
+  objectID: 0
+--- !u!114 &1031077320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25952,6 +25984,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1015722067}
+  - {fileID: 551279703}
+  - {fileID: 285413320}
   - {fileID: 557812975}
   - {fileID: 1565201628}
   - {fileID: 223166720}

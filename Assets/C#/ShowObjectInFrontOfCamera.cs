@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using UnityEngine;
 using Vuforia;
 
@@ -10,27 +9,13 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
     private ObserverBehaviour observerBehaviour;
     private Rigidbody rb;
-
-    public static ShowObjectInFrontOfCamera Instance { get; private set; }
-
-    public int objectID;
-
-    void Awake()
+    public static ShowObjectInFrontOfCamera Instance
     {
-        // 確保只有一個實例
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 切換場景時不會被銷毀（視情況而定）
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        get; private set;
     }
+    public int objectID;
     void Start()
     {
-        Debug.Log("imagetarget");
         observerBehaviour = GetComponent<ObserverBehaviour>();
         if (observerBehaviour != null)
         {
@@ -58,18 +43,18 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
         if (isTracked && vrCamera != null && objectToShow != null)
         {
-            if(behaviour.TargetName == "ArtworkFrame")
+            if (behaviour.TargetName == "ArtworkFrame")
             {
                 objectID = 0;
-                Debug.Log("作品一");
+                Debug.Log("第一幅");
             }
-            else if(behaviour.TargetName == "qrcode_rgb1")
+            else if (behaviour.TargetName == "qrcode_rgb1")
             {
                 objectID = 10;
-                Debug.Log("作品二");
+                Debug.Log("第二幅");
             }
-                // 將物件移動到相機正前方 distanceInFront 單位
-                Vector3 forwardPosition = vrCamera.position + vrCamera.forward * distanceInFront;
+            // 將物件移動到相機正前方 distanceInFront 單位
+            Vector3 forwardPosition = vrCamera.position + vrCamera.forward * distanceInFront;
             objectToShow.transform.position = forwardPosition;
             //objectToShow.transform.rotation = Quaternion.LookRotation(vrCamera.forward); // 讓它面對相機前方
             objectToShow.SetActive(true);
@@ -94,6 +79,6 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         objectToShow.transform.rotation = Quaternion.identity;
 
         // 或者鎖定特定軸向
-        objectToShow.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        // transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 }
