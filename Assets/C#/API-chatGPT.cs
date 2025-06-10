@@ -124,15 +124,20 @@ public class ChatGPTManager : MonoBehaviour
     {
         string userMessage = userInput.text;
         int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
-        Debug.Log("objectID: " + objectID);
+        Debug.LogWarning("objectID: " + objectID);
         if (objectID == 0)
+        {
+            userMessage += "這幅作品是「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一，作者是張若虛";
+            Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");
+        }
+        else if (objectID == 1)
         {
             userMessage += "這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信";
             Debug.Log("這幅作品是唐寅（1470－1524）致行臺大人餘山先生的書信");
         }
-        else if (objectID == 1)
+        else if (objectID == 2)
         {
-            userMessage += "冷淘帖是王鞏（1048－？），向友人敘述已做了冷淘，並為受贈團餅而致謝。";
+            userMessage += "這幅作品是冷淘帖是王鞏（1048－？），向友人敘述已做了冷淘，並為受贈團餅而致謝。";
             Debug.Log("冷淘帖是王鞏（1048－？），向友人敘述已做了冷淘，並為受贈團餅而致謝。");
         }
         else if (objectID == 10)
@@ -140,6 +145,7 @@ public class ChatGPTManager : MonoBehaviour
             userMessage += "「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一";
             Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");
         }
+        userMessage += "請加以統整回答問題";
         //string userMessage = "這幅書法作品的作者是誰";
         if (!string.IsNullOrEmpty(userMessage))
         {

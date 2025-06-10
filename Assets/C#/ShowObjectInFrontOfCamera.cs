@@ -14,6 +14,19 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         get; private set;
     }
     public int objectID;
+    void Awake()
+    {
+        // 確保只有一個實例
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 切換場景時不會被銷毀（視情況而定）
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         observerBehaviour = GetComponent<ObserverBehaviour>();
@@ -46,7 +59,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
             if (behaviour.TargetName == "ArtworkFrame")
             {
                 objectID = 0;
-                Debug.Log("第一幅");
+                Debug.LogWarning("第一幅:"+objectID);
             }
             else if (behaviour.TargetName == "qrcode_rgb1")
             {
