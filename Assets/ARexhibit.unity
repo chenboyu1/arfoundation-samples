@@ -8829,7 +8829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 360}
+  m_AnchoredPosition: {x: -794, y: 788}
   m_SizeDelta: {x: 980.706, y: 63.859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629091907
@@ -10618,7 +10618,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -13890,13 +13890,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: ArtworkFrame
+  mTrackableName: qrcode_rgb1
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/fir.xml
-  mAspectRatio: 0.7501693
+  mAspectRatio: 1
   mImageTargetType: 0
-  mWidth: 1477
-  mHeight: 1108
+  mWidth: 400
+  mHeight: 400
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -13947,7 +13947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1031077317}
   mHiddenRoot: {fileID: 0}
-  mTargetName: ArtworkFrame
+  mTargetName: qrcode_rgb1
   mDatasetName: Vuforia/fir.xml
   mCastedBehaviour: {fileID: 1031077317}
   mMeshFilter: {fileID: 0}
@@ -28155,18 +28155,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2104996429}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2104996432 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4912547306157101101, guid: b8f7382051281456a93ced9c504c48c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2104996429}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104996435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5823f60b36eabc1478d1e3a50a519904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2104996433 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4699212162594395307, guid: b8f7382051281456a93ced9c504c48c4,
@@ -28723,8 +28711,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2104996432}
-        m_TargetAssemblyTypeName: ShowTextOnClick, Assembly-CSharp
+      - m_Target: {fileID: 2104996436}
+        m_TargetAssemblyTypeName: ShowText, Assembly-CSharp
         m_MethodName: OnClickPlay
         m_Mode: 1
         m_Arguments:
