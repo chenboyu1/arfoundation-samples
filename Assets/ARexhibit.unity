@@ -3713,7 +3713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &285413320
 Transform:
   m_ObjectHideFlags: 0
@@ -3859,7 +3859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 1705074278}
 --- !u!1 &339959514
 GameObject:
   m_ObjectHideFlags: 0
@@ -7420,7 +7419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1097, y: 595}
+  m_AnchoredPosition: {x: 1308, y: 649}
   m_SizeDelta: {x: 1536, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &601507836
@@ -10515,6 +10514,19 @@ MonoBehaviour:
   audioSource: {fileID: 781272420}
   displayText: {fileID: 74280537}
   showtext: 0
+--- !u!114 &685448788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685448774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageObject: {fileID: 601507834}
 --- !u!1001 &736896286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10663,12 +10675,12 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -713
+      value: -764
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105
+      value: -146
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -11926,7 +11938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 685305086}
 --- !u!1001 &845184697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12068,7 +12079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &847419907
 Transform:
   m_ObjectHideFlags: 0
@@ -13573,7 +13584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 601507834}
 --- !u!1 &997492318
 GameObject:
   m_ObjectHideFlags: 0
@@ -13978,7 +13988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1031077316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15345,7 +15355,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 990136461}
+      - m_Target: {fileID: 685448788}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -18999,7 +19009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 300336371}
+      - m_Target: {fileID: 9003299402996467237}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -20166,7 +20176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 505, y: 63}
+  m_AnchoredPosition: {x: 697, y: 63}
   m_SizeDelta: {x: 113.832, y: 113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526037701
@@ -22937,6 +22947,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 685448784}
+    - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 685448788}
   m_SourcePrefab: {fileID: 100100000, guid: b8f7382051281456a93ced9c504c48c4, type: 3}
 --- !u!1 &1744496779
 GameObject:
@@ -23688,12 +23702,12 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -713
+      value: -730
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -102
+      value: -126
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -25504,7 +25518,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 840271053}
+      - m_Target: {fileID: 2104996444}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -28430,6 +28444,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2104996444}
+    - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2104996439}
   m_SourcePrefab: {fileID: 100100000, guid: b8f7382051281456a93ced9c504c48c4, type: 3}
 --- !u!224 &2104996430 stripped
@@ -28480,8 +28498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a65c5ab463001644b9fbb25dc5afbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 363237032}
-  displayText: {fileID: 74280537}
+  audioSource: {fileID: 1696279877}
+  displayText: {fileID: 629091907}
   showtext: 0
 --- !u!114 &2104996437
 MonoBehaviour:
@@ -28512,9 +28530,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0c4f0b3a943d340989b481665888d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1696279877}
-  displayText: {fileID: 629091907}
-  showtext: 0
+--- !u!114 &2104996444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104996435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageObject: {fileID: 685305086}
 --- !u!1001 &2105529730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29015,8 +29043,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2104996439}
-        m_TargetAssemblyTypeName: ShowText2, Assembly-CSharp
+      - m_Target: {fileID: 2104996436}
+        m_TargetAssemblyTypeName: ShowText, Assembly-CSharp
         m_MethodName: OnClickPlay
         m_Mode: 1
         m_Arguments:
@@ -29649,6 +29677,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9003299402996467233}
+    - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9003299402996467237}
   m_SourcePrefab: {fileID: 100100000, guid: b8f7382051281456a93ced9c504c48c4, type: 3}
 --- !u!114 &9003299402996467218 stripped
 MonoBehaviour:
@@ -29712,6 +29744,19 @@ MonoBehaviour:
   audioSource: {fileID: 363237032}
   displayText: {fileID: 74280537}
   showtext: 0
+--- !u!114 &9003299402996467237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114565196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageObject: {fileID: 1705074278}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
