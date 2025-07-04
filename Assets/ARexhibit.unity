@@ -3859,6 +3859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageObject: {fileID: 1705074278}
 --- !u!1 &339959514
 GameObject:
   m_ObjectHideFlags: 0
@@ -10526,7 +10527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 601507834}
 --- !u!1001 &736896286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11938,6 +11938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageObject: {fileID: 685305086}
 --- !u!1001 &845184697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13584,6 +13585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c04f000d10a4148802a6124eb9b066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageObject: {fileID: 601507834}
 --- !u!1 &997492318
 GameObject:
   m_ObjectHideFlags: 0
@@ -15355,7 +15357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 685448788}
+      - m_Target: {fileID: 990136461}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -19009,7 +19011,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9003299402996467237}
+      - m_Target: {fileID: 300336371}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -25518,7 +25520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2104996444}
+      - m_Target: {fileID: 840271053}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
         m_Mode: 1
@@ -28530,6 +28532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0c4f0b3a943d340989b481665888d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  displayText: {fileID: 0}
+  showtext: 0
 --- !u!114 &2104996444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28542,7 +28547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 685305086}
 --- !u!1001 &2105529730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29756,7 +29760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e65d044a80d404fb5e3b5b7ec518a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageObject: {fileID: 1705074278}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
