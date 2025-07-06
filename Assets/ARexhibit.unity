@@ -1734,6 +1734,7 @@ MonoBehaviour:
   clearButtonUI: {fileID: 1764154355}
   responseBoxUI: {fileID: 736896288}
   enterButton: {fileID: 613218130}
+  pauseButton: {fileID: 44419632}
 --- !u!1001 &154266213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12059,6 +12060,7 @@ MonoBehaviour:
   clearButtonUI: {fileID: 1417768247}
   responseBoxUI: {fileID: 2105529732}
   enterButton: {fileID: 745921653}
+  pauseButton: {fileID: 0}
 --- !u!1 &847419906
 GameObject:
   m_ObjectHideFlags: 0
@@ -21682,6 +21684,7 @@ MonoBehaviour:
   clearButtonUI: {fileID: 1417768247}
   responseBoxUI: {fileID: 2105529732}
   enterButton: {fileID: 745921653}
+  pauseButton: {fileID: 0}
 --- !u!1 &1696279876
 GameObject:
   m_ObjectHideFlags: 0
@@ -24438,6 +24441,7 @@ MonoBehaviour:
   clearButtonUI: {fileID: 1807246120}
   responseBoxUI: {fileID: 89412313}
   enterButton: {fileID: 1137175918}
+  pauseButton: {fileID: 206450424}
 --- !u!1 &1832481375
 GameObject:
   m_ObjectHideFlags: 0
@@ -24886,6 +24890,7 @@ MonoBehaviour:
   clearButtonUI: {fileID: 238418683}
   responseBoxUI: {fileID: 259861558}
   enterButton: {fileID: 278928537}
+  pauseButton: {fileID: 964552370}
 --- !u!1 &1879481170
 GameObject:
   m_ObjectHideFlags: 0

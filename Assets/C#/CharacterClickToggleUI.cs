@@ -9,6 +9,7 @@ public class CharacterClickToggleUI : MonoBehaviour
     public GameObject clearButtonUI; 
     public GameObject responseBoxUI; 
     public GameObject enterButton;
+    public GameObject pauseButton;
 
     private bool isUIVisible = false;
 
@@ -20,6 +21,7 @@ public class CharacterClickToggleUI : MonoBehaviour
         clearButtonUI.SetActive(false);
         responseBoxUI.SetActive(false);
         enterButton.SetActive(false);
+        pauseButton.SetActive(false);
     }
 
     // 當角色被點擊時呼叫
@@ -33,5 +35,6 @@ public class CharacterClickToggleUI : MonoBehaviour
         clearButtonUI.SetActive(isUIVisible);
         responseBoxUI.SetActive(isUIVisible);
         enterButton.SetActive(isUIVisible);
+        pauseButton.SetActive(isUIVisible);
     }
 }
