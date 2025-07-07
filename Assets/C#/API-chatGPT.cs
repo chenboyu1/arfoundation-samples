@@ -145,7 +145,7 @@ public class ChatGPTManager : MonoBehaviour
             userMessage += "「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一";
             Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");
         }
-        userMessage += "請加以統整回答問題";
+        userMessage += "請加以統整回答問題，字數50~80字";
         //string userMessage = "這幅書法作品的作者是誰";
         if (!string.IsNullOrEmpty(userMessage))
         {
