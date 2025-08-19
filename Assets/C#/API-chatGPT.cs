@@ -123,7 +123,7 @@ public class ChatGPTManager : MonoBehaviour
     public void SendMessageToChatGPT()
     {
         string userMessage = userInput.text;
-        int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
+        int objectID = 0;// ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
         Debug.LogWarning("objectID: " + objectID);
         if (objectID == 0)
         {
