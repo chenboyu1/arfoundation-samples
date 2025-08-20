@@ -1,27 +1,23 @@
 using UnityEngine;
 using TMPro;
-using NUnit.Framework;
 
 public class ShowText1 : MonoBehaviour
 {
-    public AudioSource audioSource;         // 播放語音
-    public TMP_Text displayText;            // 顯示的文字內容
-    public bool showtext = false; //控制文字顯示
+    public AudioSource audioSource;      // 播放語音
+    public TMP_Text displayText;         // 對話框內顯示的文字
+    public GameObject dialogPanel;       // 對話框 Panel
 
-    private string textContent = @" 《春江花月夜》是唐代詩人張若虛創作的七言歌行，最早收錄於郭茂倩編撰的《樂府詩集》中。此詩沿用陳隋樂府舊題，運用富有生活氣息的清麗之筆，以江為場景，以月為主體，描繪了一幅幽美邈遠的春江月夜圖。
-
-全詩共三十六句，每四句一換韻，通篇融詩情、畫意、哲理為一體，意境空明，想像奇特，語言自然雋永，韻律宛轉悠揚，為歷代文人墨客吟詠唱誦，被聞一多譽為「詩中的詩，頂峰上的頂峰」。";
+    private string textContent = @"顧炎武（字亭林，1613－1682）是明末清初的重要思想家、經學家與史學家，主張“天下興亡，匹夫有責”，強調實學與道德實踐，反對空談與脫離現實的學問。他說：“博學於文，行己有恥，自一身以至於天下國家，皆學之事也。”意思是要廣泛學習知識，行事要有羞恥心和自我約束，學問不僅用於自身修養，還應推及家庭、社會乃至國家，體現“修身齊家治國平天下”的理念。顧炎武強調學問與德行並重，提倡從個人修養開始，逐步承擔社會與國家的責任，並主張知識應與實際生活結合。這種“知行合一”的精神在現代仍具啟發意義，提醒我們學習不僅為了考試或工作，更應提升品德、對社會有所貢獻。";
 
     void Start()
     {
-        // 初始化：隱藏文字
+        // 初始化：顯示文字但對話框先隱藏
         if (displayText != null)
         {
-            showtext = false;
-            displayText.gameObject.SetActive(false);
+            displayText.text = textContent;
+            displayText.gameObject.SetActive(true); // 永遠顯示文字
         }
 
-        // 自動抓 AudioSource
         if (audioSource == null)
         {
             audioSource = GetComponent<AudioSource>();
@@ -31,54 +27,40 @@ public class ShowText1 : MonoBehaviour
         {
             audioSource.playOnAwake = false;
         }
-        else
+
+        if (dialogPanel != null)
         {
-            Debug.LogWarning("請在 Inspector 設定 AudioSource。");
+            dialogPanel.SetActive(false); // 預設隱藏對話框
         }
     }
 
-    void Update()
+    // 按下播放語音按鈕
+    public void OnClickPlayAudio()
     {
-        // 根據播放狀態控制文字顯示
-        /*if (audioSource != null && displayText != null)
-        {
-            if (!showtext)
-            {
-                displayText.gameObject.SetActive(true);
-                displayText.text = textContent;
-                showtext = true;
-            }
-            else
-            {
-                displayText.gameObject.SetActive(false);
-                showtext = false;
-            }
-        }*/
-    }
+        if (audioSource == null) return;
 
-    public void OnClickPlay()
-    {
-        if (audioSource == null)
-        {
-            Debug.LogWarning("AudioSource 為 null。");
-            return;
-        }
- 
-        // 點擊後播放或停止語音
-        if (!showtext)
+        if (!audioSource.isPlaying)
         {
             audioSource.Play();
-            displayText.gameObject.SetActive(true);
-            displayText.text = textContent;
-            showtext = true;
-            Debug.Log("播放語音");
         }
-        else
+    }
+
+    // 按下暫停語音按鈕
+    public void OnClickPauseAudio()
+    {
+        if (audioSource == null) return;
+
+        if (audioSource.isPlaying)
         {
             audioSource.Stop();
-            Debug.Log("停止語音");
-            displayText.gameObject.SetActive(false);
-            showtext = false;
         }
+    }
+
+    // 顯示/隱藏對話框（文字永遠顯示）
+    public void OnClickShowDialog()
+    {
+        if (dialogPanel == null) return;
+
+        dialogPanel.SetActive(!dialogPanel.activeSelf);
     }
 }
