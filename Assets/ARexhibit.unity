@@ -8520,6 +8520,12 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &204390587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146104854219513081, guid: b8f7382051281456a93ced9c504c48c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 44181775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &206046041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 982000643754831459, guid: dbeff8f2322aacf46afb1f045bec116f,
@@ -12234,7 +12240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &280391016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22895,7 +22901,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowNext
         m_Mode: 1
@@ -33867,6 +33873,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751360348}
   m_CullTransparentMesh: 1
+--- !u!1 &752098132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146104854219513081, guid: b8f7382051281456a93ced9c504c48c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1710257683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &753394587
 GameObject:
   m_ObjectHideFlags: 0
@@ -39772,6 +39784,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1272716699}
   - {fileID: 677785906}
   - {fileID: 566763880}
   - {fileID: 1616048898}
@@ -40765,7 +40778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowPrevious
         m_Mode: 1
@@ -45219,7 +45232,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowPrevious
         m_Mode: 1
@@ -47744,6 +47757,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1136154366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146104854219513081, guid: b8f7382051281456a93ced9c504c48c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1929500880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137085495
 GameObject:
   m_ObjectHideFlags: 0
@@ -51696,7 +51715,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowNext
         m_Mode: 1
@@ -54341,6 +54360,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271948197}
   m_CullTransparentMesh: 1
+--- !u!1 &1272716697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272716699}
+  - component: {fileID: 1272716698}
+  m_Layer: 5
+  m_Name: "ImageSetManager - \u738B\u975C\u829D"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1272716698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272716697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b60f68813865c345a367c23cbddb588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageSetContainer: {fileID: 599260081}
+  specialSubObjects:
+  - {fileID: 1136154366}
+  - {fileID: 2055083391}
+  - {fileID: 752098132}
+  - {fileID: 2021913392}
+  - {fileID: 204390587}
+--- !u!224 &1272716699
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272716697}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -44.919006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 886137502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 72.58453, y: 38.31819}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1274746798
 GameObject:
   m_ObjectHideFlags: 0
@@ -64551,7 +64625,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowPrevious
         m_Mode: 1
@@ -74176,7 +74250,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowNext
         m_Mode: 1
@@ -77116,7 +77190,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowPrevious
         m_Mode: 1
@@ -83904,7 +83978,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowPrevious
         m_Mode: 1
@@ -86377,7 +86451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowNext
         m_Mode: 1
@@ -86564,6 +86638,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020589608}
   m_CullTransparentMesh: 1
+--- !u!1 &2021913392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146104854219513081, guid: b8f7382051281456a93ced9c504c48c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 175536677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2022331798
 GameObject:
   m_ObjectHideFlags: 0
@@ -87463,6 +87543,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052962298}
   m_CullTransparentMesh: 1
+--- !u!1 &2055083391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146104854219513081, guid: b8f7382051281456a93ced9c504c48c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 722425855}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2056656245
 GameObject:
   m_ObjectHideFlags: 0
@@ -87808,7 +87894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1921957074}
+      - m_Target: {fileID: 1272716698}
         m_TargetAssemblyTypeName: ImageSetNavigator, Assembly-CSharp
         m_MethodName: ShowNext
         m_Mode: 1
