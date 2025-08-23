@@ -15,7 +15,7 @@ public class ShowText1 : MonoBehaviour
         if (displayText != null)
         {
             displayText.text = textContent;
-            displayText.gameObject.SetActive(true); // 永遠顯示文字
+            displayText.gameObject.SetActive(false);//永遠顯示文字
         }
 
         if (audioSource == null)
@@ -30,7 +30,7 @@ public class ShowText1 : MonoBehaviour
 
         if (dialogPanel != null)
         {
-            dialogPanel.SetActive(false); // 預設隱藏對話框
+            dialogPanel.SetActive(true);//設隱藏對話框
         }
     }
 
@@ -61,6 +61,6 @@ public class ShowText1 : MonoBehaviour
     {
         if (dialogPanel == null) return;
 
-        dialogPanel.SetActive(!dialogPanel.activeSelf);
+        //alogPanel.SetActive(!dialogPanel.activeSelf);
     }
 }

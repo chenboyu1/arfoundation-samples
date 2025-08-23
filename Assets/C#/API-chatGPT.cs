@@ -123,7 +123,7 @@ public class ChatGPTManager : MonoBehaviour
     public void SendMessageToChatGPT()
     {
         string userMessage = userInput.text;
-        int objectID = 0;// ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
+        int objectID = 10;// ShowObjectInFrontOfCamera.Instance.objectID; //識別哪幅畫作
         Debug.LogWarning("objectID: " + objectID);
         if (objectID == 0)
         {
@@ -142,7 +142,7 @@ public class ChatGPTManager : MonoBehaviour
         }
         else if (objectID == 10)
         {
-            userMessage += "「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一";
+            userMessage += "這幅作品是王靜芝的書法，內容引自顧炎武的顧停林語，這首詩的原文是『博學於文，行己有恥。自一身以至於天下國家，皆學之事也。』";
             Debug.Log("「春江花月夜」是樂府《清商曲辭‧吳聲歌曲》的舊題之一");
         }
         userMessage += "請加以統整回答問題，字數50~80字";
@@ -317,7 +317,7 @@ public class ChatGPTManager : MonoBehaviour
     public void StopReply()
     {
         audioSource.Stop();
-        responseText.text = "等待回應";
+        responseText.text = "";
     }
 
     private bool IsEnglish(string input)
