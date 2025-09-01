@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
@@ -26,6 +26,7 @@ public class ChatGPTManager : MonoBehaviour
 
     public TMP_InputField userInput;
     public TMP_Text responseText;
+    //public int objectID;
 
     void Start()
     {
@@ -123,30 +124,46 @@ public class ChatGPTManager : MonoBehaviour
     public void SendMessageToChatGPT()
     {
         string userMessage = userInput.text;
-        int objectID = 0;// ShowObjectInFrontOfCamera.Instance.objectID; //ÃÑ§O­ş´Tµe§@
+        int objectID = ShowObjectInFrontOfCamera.Instance.objectID; //è­˜åˆ¥å“ªå¹…ç•«ä½œ
         Debug.LogWarning("objectID: " + objectID);
         if (objectID == 10)
         {
-            userMessage += "³o´T§@«~¬O¡u¬K¦¿ªá¤ë©]¡v¬O¼Ö©²¡m²M°Ó¦±Ãã¡E§dÁnºq¦±¡nªºÂÂÃD¤§¤@¡A§@ªÌ¬O±i­Yµê¡C³o­º¸Öªº­ì¤å¬O¬K¦¿¼é¤ô³s®ü¥­¡A®ü¤W©ú¤ë¦@¼é¥Í¡CùĞùĞÀHªi¤d¸U¨½¡A¦ó³B¬K¦¿µL¤ë©ú¡H¦¿¬y©{ÂàëĞªÚ¨l¡A¤ë·ÓªáªL¬Ò¦üÄÅ¡CªÅùØ¬yÁ÷¤£Ä±­¸¡A¥Å¤W¥Õ¨F¬İ¤£¨£¡C¦¿¤Ñ¤@¦âµLÅÖ¹Ğ¡A²®²®ªÅ¤¤©t¤ë½ü¡C¦¿¯`¦ó¤Hªì¨£¤ë¡A¦¿¤ë¦ó¦~ªì·Ó¤H¡H¤H¥Í¥N¥NµL½a¤w¡A¦¿¤ë¦~¦~¬é¬Û¦ü¡C¤£ª¾¦¿¤ë«İ¦ó¤H¡H¦ı¨£ªø¦¿°e¬y¤ô¡C¥Õ¶³¤@¤ù¥h±y±y¡A«C·¬®ú¤W¤£³Ó·T¡C½Ö®a¤µ©]«ó¦à¤l¡A¦ó³B¬Û«ä©ú¤ë¼Ó¡H¥i¼¦¼Ó¤W¤ë±r«Ş¡AÀ³·ÓÂ÷¤H§©Ãè»O¡C¥É¤áÃ®¤¤¨÷¤£¥h¡Aìê¦ç¯z¤W©ØÁÙ¨Ó¡C¦¹®É¬Û±æ¤£¬Û»D¡AÄ@³v¤ëµØ¬y·Ó§g¡CÂE¶­ªø­¸¥ú¤£«×¡A³½Às¼çÅD¤ô¦¨¤å¡C¬Q©]¶¢¼æ¹Ú¸¨ªá¡A¥i¼¦¬K¥b¤£ÁÙ®a¡C¦¿¤ô¬y¬K¥h±ıºÉ¡A¦¿¼æ¸¨¤ë´_¦è±×¡C±×¤ë¨I¨IÂÃ®üÃú¡AºÔ¥ÛÃt´ğµL­­¸ô¡C¤£ª¾­¼¤ë´X¤HÂk¡A¸¨¤ë·n±¡º¡¦¿¾ğ¡C";
-            Debug.Log("¡u¬K¦¿ªá¤ë©]¡v¬O¼Ö©²¡m²M°Ó¦±Ãã¡E§dÁnºq¦±¡nªºÂÂÃD¤§¤@");
+            userMessage += "é€™å¹…ä½œå“æ˜¯ã€Œæ˜¥æ±ŸèŠ±æœˆå¤œã€æ˜¯æ¨‚åºœã€Šæ¸…å•†æ›²è¾­â€§å³è²æ­Œæ›²ã€‹çš„èˆŠé¡Œä¹‹ä¸€ï¼Œä½œè€…æ˜¯å¼µè‹¥è™›ã€‚é€™é¦–è©©çš„åŸæ–‡æ˜¯æ˜¥æ±Ÿæ½®æ°´é€£æµ·å¹³ï¼Œæµ·ä¸Šæ˜æœˆå…±æ½®ç”Ÿã€‚ç©ç©éš¨æ³¢åƒè¬é‡Œï¼Œä½•è™•æ˜¥æ±Ÿç„¡æœˆæ˜ï¼Ÿæ±Ÿæµå®›è½‰é¶èŠ³ç”¸ï¼Œæœˆç…§èŠ±æ—çš†ä¼¼éœ°ã€‚ç©ºè£æµéœœä¸è¦ºé£›ï¼Œæ±€ä¸Šç™½æ²™çœ‹ä¸è¦‹ã€‚æ±Ÿå¤©ä¸€è‰²ç„¡çº–å¡µï¼Œçšçšç©ºä¸­å­¤æœˆè¼ªã€‚æ±Ÿç•”ä½•äººåˆè¦‹æœˆï¼Œæ±Ÿæœˆä½•å¹´åˆç…§äººï¼Ÿäººç”Ÿä»£ä»£ç„¡çª®å·²ï¼Œæ±Ÿæœˆå¹´å¹´ç¥‡ç›¸ä¼¼ã€‚ä¸çŸ¥æ±Ÿæœˆå¾…ä½•äººï¼Ÿä½†è¦‹é•·æ±Ÿé€æµæ°´ã€‚ç™½é›²ä¸€ç‰‡å»æ‚ æ‚ ï¼Œé’æ¥“æµ¦ä¸Šä¸å‹æ„ã€‚èª°å®¶ä»Šå¤œæ‰èˆŸå­ï¼Œä½•è™•ç›¸æ€æ˜æœˆæ¨“ï¼Ÿå¯æ†æ¨“ä¸Šæœˆå¾˜å¾Šï¼Œæ‡‰ç…§é›¢äººå¦é¡è‡ºã€‚ç‰æˆ¶ç°¾ä¸­å·ä¸å»ï¼Œæ“£è¡£ç §ä¸Šæ‹‚é‚„ä¾†ã€‚æ­¤æ™‚ç›¸æœ›ä¸ç›¸èï¼Œé¡˜é€æœˆè¯æµç…§å›ã€‚é´»é›é•·é£›å…‰ä¸åº¦ï¼Œé­šé¾æ½›èºæ°´æˆæ–‡ã€‚æ˜¨å¤œé–’æ½­å¤¢è½èŠ±ï¼Œå¯æ†æ˜¥åŠä¸é‚„å®¶ã€‚æ±Ÿæ°´æµæ˜¥å»æ¬²ç›¡ï¼Œæ±Ÿæ½­è½æœˆå¾©è¥¿æ–œã€‚æ–œæœˆæ²‰æ²‰è—æµ·éœ§ï¼Œç¢£çŸ³ç€Ÿæ¹˜ç„¡é™è·¯ã€‚ä¸çŸ¥ä¹˜æœˆå¹¾äººæ­¸ï¼Œè½æœˆæ–æƒ…æ»¿æ±Ÿæ¨¹ã€‚";
+            Debug.Log("ã€Œæ˜¥æ±ŸèŠ±æœˆå¤œã€æ˜¯æ¨‚åºœã€Šæ¸…å•†æ›²è¾­â€§å³è²æ­Œæ›²ã€‹çš„èˆŠé¡Œä¹‹ä¸€");
         }
         else if (objectID == 11)
         {
-            userMessage += "³o´T§@«~¬O­ğ±G¡]1470¡Ğ1524¡^­P¦æ»O¤j¤H¾l¤s¥ı¥Íªº®Ñ«H¡C³o­º¸Öªº­ì¤å¬O¨Í¥Í­ğ±G¹y­º¦A«ô¡C¾l¤s¤j¤H¦æ»O¡CªÙ§Ì¨Ó°Ñ¡C³Æª¾°_©~²M³Ó¡C¦ı¥¼ª¾¤½°È²¦´Á¡C¨M¦b¦ó¤é¡C¬é®£¬K¨Ó«B³·¥æ¦Ü¡C¥ç¥i©À¤]¡C¯÷¦³¤Í¥Í¿c¶y¡C¦]·í¶íªø¸Ñ¤Ò¦b©¼¬£¬°¥Òªø¡C¯À¬O´I®a¤l§Ì¡C¤£³ô³Ò­W¡C¦­±ß¤§¶¡¡C¸U±æ²M¥Ø¤@¤G¡C¨¬¨£°õ¨Æ¥­¤é¨£«p°Ï°Ï·N¡C©^¥h¨Å»æ¤­¤ç¡C©Ò¥R¤@¯ù¤§¥Î¡C¬Û¨£¦bÂâ¡C¥^¥^¤£±x¡C¨Í¥Í­ğ±G¦A«ô¡C";
-            Debug.Log("³o´T§@«~¬O­ğ±G¡]1470¡Ğ1524¡^­P¦æ»O¤j¤H¾l¤s¥ı¥Íªº®Ñ«H");
+            userMessage += "é€™å¹…ä½œå“æ˜¯å”å¯…ï¼ˆ1470ï¼1524ï¼‰è‡´è¡Œè‡ºå¤§äººé¤˜å±±å…ˆç”Ÿçš„æ›¸ä¿¡ã€‚é€™é¦–è©©çš„åŸæ–‡æ˜¯ä¾ç”Ÿå”å¯…é “é¦–å†æ‹œã€‚é¤˜å±±å¤§äººè¡Œè‡ºã€‚èˆå¼Ÿä¾†åƒã€‚å‚™çŸ¥èµ·å±…æ¸…å‹ã€‚ä½†æœªçŸ¥å…¬å‹™ç•¢æœŸã€‚æ±ºåœ¨ä½•æ—¥ã€‚ç¥‡ææ˜¥ä¾†é›¨é›ªäº¤è‡³ã€‚äº¦å¯å¿µä¹Ÿã€‚èŒ²æœ‰å‹ç”Ÿç›§éˆ‡ã€‚å› ç•¶å¡˜é•·è§£å¤«åœ¨å½¼æ´¾ç‚ºç”²é•·ã€‚ç´ æ˜¯å¯Œå®¶å­å¼Ÿã€‚ä¸å ªå‹è‹¦ã€‚æ—©æ™šä¹‹é–“ã€‚è¬æœ›æ¸…ç›®ä¸€äºŒã€‚è¶³è¦‹åŸ·äº‹å¹³æ—¥è¦‹åšå€å€æ„ã€‚å¥‰å»ä¹³é¤…äº”æ–¤ã€‚æ‰€å……ä¸€èŒ¶ä¹‹ç”¨ã€‚ç›¸è¦‹åœ¨é‚‡ã€‚åŒ†åŒ†ä¸æ‚‰ã€‚ä¾ç”Ÿå”å¯…å†æ‹œã€‚";
+            Debug.Log("é€™å¹…ä½œå“æ˜¯å”å¯…ï¼ˆ1470ï¼1524ï¼‰è‡´è¡Œè‡ºå¤§äººé¤˜å±±å…ˆç”Ÿçš„æ›¸ä¿¡");
         }
         else if (objectID == 12)
         {
-            userMessage += "³o´T§@«~¬O§N²^©«¬O¤ı¾d¡]1048¡Ğ¡H¡^¡A¦V¤Í¤H±Ô­z¤w°µ¤F§N²^¡A¨Ã¬°¨üÃØ¹Î»æ¦Ó­PÁÂ¡C³o­º¸Öªº­ì¤å¬O¾d¤w§@§N²^¤@¤f¡A©¯¦p¬ù¤]¡C°Ï°Ï¤f±Ô¡A©Ó´f¹Î»æ¡A¬Ã·P¤§¦Ü¡C¦³·F¥Ü¤§¡A²á³¯ÁÂ¸Û¡CµL·Ğ³ø®Ñ¬°Àµ¡C ¾d¦A«ô";
-            Debug.Log("§N²^©«¬O¤ı¾d¡]1048¡Ğ¡H¡^¡A¦V¤Í¤H±Ô­z¤w°µ¤F§N²^¡A¨Ã¬°¨üÃØ¹Î»æ¦Ó­PÁÂ¡C");
+            userMessage += "é€™å¹…ä½œå“æ˜¯å†·æ·˜å¸–æ˜¯ç‹éï¼ˆ1048ï¼ï¼Ÿï¼‰ï¼Œå‘å‹äººæ•˜è¿°å·²åšäº†å†·æ·˜ï¼Œä¸¦ç‚ºå—è´ˆåœ˜é¤…è€Œè‡´è¬ã€‚é€™é¦–è©©çš„åŸæ–‡æ˜¯éå·²ä½œå†·æ·˜ä¸€å£ï¼Œå¹¸å¦‚ç´„ä¹Ÿã€‚å€å€å£æ•˜ï¼Œæ‰¿æƒ åœ˜é¤…ï¼Œçæ„Ÿä¹‹è‡³ã€‚æœ‰å¹¹ç¤ºä¹‹ï¼ŒèŠé™³è¬èª ã€‚ç„¡ç…©å ±æ›¸ç‚ºæ‡‡ã€‚ éå†æ‹œ";
+            Debug.Log("å†·æ·˜å¸–æ˜¯ç‹éï¼ˆ1048ï¼ï¼Ÿï¼‰ï¼Œå‘å‹äººæ•˜è¿°å·²åšäº†å†·æ·˜ï¼Œä¸¦ç‚ºå—è´ˆåœ˜é¤…è€Œè‡´è¬ã€‚");
         }
         else if (objectID == 0)
         {
-            userMessage += "³o´T§@«~¬O¤ıÀRªÛªº®Ñªk¡A¤º®e¤Ş¦ÛÅUª¢ªZªºÅU°±ªL»y¡A³o­º¸Öªº­ì¤å¬O¡y³Õ¾Ç©ó¤å¡A¦æ¤v¦³®¢¡C¦Û¤@¨­¥H¦Ü©ó¤Ñ¤U°ê®a¡A¬Ò¾Ç¤§¨Æ¤]¡C¡z";
-            Debug.Log("¡u¬K¦¿ªá¤ë©]¡v¬O¼Ö©²¡m²M°Ó¦±Ãã¡E§dÁnºq¦±¡nªºÂÂÃD¤§¤@");
+            userMessage += "é€™å¹…ä½œå“æ˜¯ç‹éœèŠçš„æ›¸æ³•ï¼Œå…§å®¹å¼•è‡ªé¡§ç‚æ­¦çš„é¡§åœæ—èªï¼Œé€™é¦–è©©çš„åŸæ–‡æ˜¯ã€Œåšå­¸æ–¼æ–‡ï¼Œè¡Œå·±æœ‰æ¥ã€‚è‡ªä¸€èº«ä»¥è‡³æ–¼å¤©ä¸‹åœ‹å®¶ï¼Œçš†å­¸ä¹‹äº‹ä¹Ÿã€‚ã€";
         }
-        userMessage += "½Ğ¥[¥H²Î¾ã¦^µª°İÃD¡A¦r¼Æ50~80¦r";
-        //string userMessage = "³o´T®Ñªk§@«~ªº§@ªÌ¬O½Ö";
+        else if (objectID == 1)
+        {
+            userMessage += "é€™å¹…ä½œå“æ˜¯ç‹éœèŠçš„æ›¸æ³•ï¼Œå…§å®¹ç‚ºã€Œè«–æ›¸ç•¶æ¬²å¿ƒå…ˆæ­£ï¼Œå­¸åˆ°è±ˆå®¹æ°£ä¸å¹³ã€‚ã€";
+        }
+        else if (objectID == 2)
+        {
+            userMessage += "é€™å¹…ä½œå“æ˜¯ç‹éœèŠçš„æ›¸æ³•ï¼Œå…§å®¹ç‚ºã€Œå±±åŠçƒé›²æŒ¾é©Ÿé›¨ï¼Œæ¹–é ­ç¶ æ¼²éå¹³æ©‹ã€‚çœ¼å‰é¢¨è‰²æ·»æ–¹å¯¸ï¼Œçˆ­ä¼¼éŒ¢å¡˜å…«æœˆæ½®ã€‚ã€";
+        }
+        else if (objectID == 3)
+        {
+            userMessage += "é€™å¹…ä½œå“æ˜¯ç‹éœèŠçš„æ›¸æ³•ï¼Œå…§å®¹ç‚ºã€Œè·ç›¡å·²ç„¡æ“é›¨è“‹ï¼ŒèŠæ®˜çŒ¶æœ‰å‚²éœœæã€‚ä¸€å¹´å¥½æ™¯å›é ˆè¨˜ï¼Œæ­£æ˜¯æ©™é»ƒæ©˜ç¶ æ™‚ã€‚ã€";
+        }
+        else if (objectID == 4)
+        {
+            userMessage += "é€™å¹…ä½œå“æ˜¯ç‹éœèŠçš„æ›¸æ³•ï¼Œå…§å®¹ç‚ºã€Œé¢¨é€é˜è²é›²å¶ºå¯ºï¼Œæ°´æ‘‡ç‡ˆå½±é¡æ¹–æ¨“ã€‚ã€";
+        }
+
+        userMessage += "è«‹åŠ ä»¥çµ±æ•´å›ç­”å•é¡Œï¼Œå­—æ•¸50~80å­—";
+        //string userMessage = "é€™å¹…æ›¸æ³•ä½œå“çš„ä½œè€…æ˜¯èª°";
         if (!string.IsNullOrEmpty(userMessage))
         {
             //StartCoroutine(SendChineseSentence(userMessage));
@@ -154,7 +171,7 @@ public class ChatGPTManager : MonoBehaviour
         }
         else
         {
-            responseText.text = "½Ğ¿é¤J°T®§¡I";
+            responseText.text = "è«‹è¼¸å…¥è¨Šæ¯ï¼";
         }
     }
 
@@ -175,16 +192,16 @@ public class ChatGPTManager : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string result = request.downloadHandler.text;
-                Debug.Log("¨Ó¦Û Python ¦^À³: " + result);
+                Debug.Log("ä¾†è‡ª Python å›æ‡‰: " + result);
 
-                // §â¦^À³¥[¤J­ì¥»°T®§«áµo°eµ¹ ChatGPT¡]©Î¨ä¥LÅŞ¿è¡^
-                string updatedMessage = $"{sentence} ³o¬O¸ê®Æ®w¤¤¤ñ¹ï¨ìªº±Ô­z¡A½Ğ®Ú¾Ú¥H¤U¤º®e½Õ¾ã¦^À³¥[¥H¦h°µ¤¶²Ğ¡G{result}";
+                // æŠŠå›æ‡‰åŠ å…¥åŸæœ¬è¨Šæ¯å¾Œç™¼é€çµ¦ ChatGPTï¼ˆæˆ–å…¶ä»–é‚è¼¯ï¼‰
+                string updatedMessage = $"{sentence} é€™æ˜¯è³‡æ–™åº«ä¸­æ¯”å°åˆ°çš„æ•˜è¿°ï¼Œè«‹æ ¹æ“šä»¥ä¸‹å…§å®¹èª¿æ•´å›æ‡‰åŠ ä»¥å¤šåšä»‹ç´¹ï¼š{result}";
                 StartCoroutine(SendChatGPTRequest(updatedMessage));
             }
             else
             {
-                Debug.LogError("¶Ç°e¥¢±Ñ: " + request.error);
-                responseText.text = "¸ê®Æ¶Ç°e¥¢±Ñ¡G" + request.error;
+                Debug.LogError("å‚³é€å¤±æ•—: " + request.error);
+                responseText.text = "è³‡æ–™å‚³é€å¤±æ•—ï¼š" + request.error;
             }
         }
     }
@@ -194,14 +211,14 @@ public class ChatGPTManager : MonoBehaviour
         if (string.IsNullOrEmpty(chatGptApiKey))
             yield break;
 
-        responseText.text = "µ¥«İ ChatGPT ¦^À³¤¤...";
+        responseText.text = "ç­‰å¾… ChatGPT å›æ‡‰ä¸­...";
 
         string jsonPayload = JsonConvert.SerializeObject(new
         {
             model = "gpt-3.5-turbo",
             messages = new object[]
             {
-                new { role = "system", content = "§A¬O»y­µ§U²z¡A½Ğ¨Ï¥ÎÁcÅé¤¤¤å¦^µª¡C" },
+                new { role = "system", content = "ä½ æ˜¯èªéŸ³åŠ©ç†ï¼Œè«‹ä½¿ç”¨ç¹é«”ä¸­æ–‡å›ç­”ã€‚" },
                 new { role = "user", content = message }
             }
         });
@@ -230,20 +247,20 @@ public class ChatGPTManager : MonoBehaviour
                 }
                 else
                 {
-                    responseText.text = "ChatGPT ¨S¦³¦^À³¡A½Ğµy«á¦A¸Õ¡C";
+                    responseText.text = "ChatGPT æ²’æœ‰å›æ‡‰ï¼Œè«‹ç¨å¾Œå†è©¦ã€‚";
                 }
             }
             else
             {
-                responseText.text = "¿ù»~¡G" + request.error;
+                responseText.text = "éŒ¯èª¤ï¼š" + request.error;
             }
         }
     }
 
-    // ¡i­×§ï°Ï¡jTTS ¦X¦¨¨Ã¼½©ñ¡]§ï¥Î MP3¡^
+    // ã€ä¿®æ”¹å€ã€‘TTS åˆæˆä¸¦æ’­æ”¾ï¼ˆæ”¹ç”¨ MP3ï¼‰
     private IEnumerator SynthesizeAndPlay(string text)
     {
-        responseText.text = "¥¿¦b¦X¦¨»y­µ...";
+        responseText.text = "æ­£åœ¨åˆæˆèªéŸ³...";
 
         string ttsUrl = $"https://texttospeech.googleapis.com/v1/text:synthesize?key={googleApiKey}";
 
@@ -261,7 +278,7 @@ public class ChatGPTManager : MonoBehaviour
             },
             audioConfig = new
             {
-                audioEncoding = "MP3", // ¡i§ï¦¨ MP3¡j
+                audioEncoding = "MP3", // ã€æ”¹æˆ MP3ã€‘
                 speakingRate = 1.2f
             }
         };
@@ -280,11 +297,11 @@ public class ChatGPTManager : MonoBehaviour
             var ttsResponse = JsonConvert.DeserializeObject<TTSResponse>(request.downloadHandler.text);
             byte[] audioData = Convert.FromBase64String(ttsResponse.audioContent);
 
-            // ¡i¦sÀÉ¡j
+            // ã€å­˜æª”ã€‘
             string path = Path.Combine(Application.persistentDataPath, "temp_tts.mp3");
             File.WriteAllBytes(path, audioData);
 
-            // ¡i¥Î UnityWebRequestMultimedia Åª¦¨ AudioClip¡j
+            // ã€ç”¨ UnityWebRequestMultimedia è®€æˆ AudioClipã€‘
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + path, AudioType.MPEG))
             {
                 yield return www.SendWebRequest();
@@ -294,23 +311,23 @@ public class ChatGPTManager : MonoBehaviour
                     AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                     audioSource.clip = clip;
                     audioSource.Play();
-                    Debug.Log("­n»y­µ¦X¦¨ªº¤å¦r¬O¡G" + text);
+                    Debug.Log("è¦èªéŸ³åˆæˆçš„æ–‡å­—æ˜¯ï¼š" + text);
                     responseText.text = text;
                 }
                 else
                 {
-                    Debug.LogError("¸ü¤J MP3 AudioClip ¥¢±Ñ: " + www.error);
-                    responseText.text = "¼½©ñ¥¢±Ñ¡I";
+                    Debug.LogError("è¼‰å…¥ MP3 AudioClip å¤±æ•—: " + www.error);
+                    responseText.text = "æ’­æ”¾å¤±æ•—ï¼";
                 }
             }
 
-            // ¡i¥i¿ï¡j¼½©ñ§¹§R°£ÀÉ®×
+            // ã€å¯é¸ã€‘æ’­æ”¾å®Œåˆªé™¤æª”æ¡ˆ
             // File.Delete(path);
         }
         else
         {
-            Debug.LogError("TTS ¦X¦¨¥¢±Ñ: " + request.error);
-            responseText.text = "»y­µ¦X¦¨¥¢±Ñ¡G" + request.error;
+            Debug.LogError("TTS åˆæˆå¤±æ•—: " + request.error);
+            responseText.text = "èªéŸ³åˆæˆå¤±æ•—ï¼š" + request.error;
         }
     }
 
@@ -364,17 +381,17 @@ public class ChatGPTManager : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Google Speech-to-Text API ¦^À³¡G" + request.downloadHandler.text);
+                Debug.Log("Google Speech-to-Text API å›æ‡‰ï¼š" + request.downloadHandler.text);
             }
             else
             {
-                Debug.LogError("Google Speech-to-Text API ¥¢±Ñ¡G" + request.error);
+                Debug.LogError("Google Speech-to-Text API å¤±æ•—ï¼š" + request.error);
             }
         }
     }
 }
 
-// ¸ê®Æµ²ºc
+// è³‡æ–™çµæ§‹
 [System.Serializable]
 public class TTSResponse
 {
