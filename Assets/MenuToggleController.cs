@@ -24,4 +24,11 @@ public class MenuToggleController : MonoBehaviour
         dialogPanel.SetActive(true);
         displayText.gameObject.SetActive(false);
     }
+
+    public void CloseAll()
+    {
+        explanationMenu.SetActive(false);
+        voiceMenu.SetActive(false);
+        displayText.gameObject.SetActive(false);
+    }
 }

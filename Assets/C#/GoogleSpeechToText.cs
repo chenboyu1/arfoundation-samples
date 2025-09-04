@@ -149,7 +149,7 @@ public class GoogleSpeechToText : MonoBehaviour
             if (recordedClip != null)
             {
                 StartCoroutine(UploadAudio()); // 上傳錄音
-                btnName.text = "辨識中";
+                btnName.text = "辨識中...";
             }
             else
             {
@@ -162,7 +162,7 @@ public class GoogleSpeechToText : MonoBehaviour
             voiceRecorder.StartRecording();
             isRecording = true;
             Debug.LogWarning("9開始錄音...");
-            btnName.text = "錄音中";
+            btnName.text = "錄音中...";
         }
     }
 
@@ -236,7 +236,7 @@ public class GoogleSpeechToText : MonoBehaviour
 
             if (btnName != null)
             {
-                btnName.text = "語音";
+                btnName.text = "請送出問題";
             }
         }
     }
@@ -280,6 +280,7 @@ public class GoogleSpeechToText : MonoBehaviour
         if (userInputField != null)
         {
             userInputField.text = "";
+            btnName.text = "";
         }
     }
 }
