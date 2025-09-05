@@ -9,6 +9,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
     private ObserverBehaviour observerBehaviour;
     private Rigidbody rb;
+    public GameObject[] specialSubObjects;
     public static ShowObjectInFrontOfCamera Instance
     {
         get; private set;
@@ -37,7 +38,9 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
         if (objectToShow != null)
         {
-            objectToShow.SetActive(false); // 預設隱藏
+            objectToShow.SetActive(false);
+            for (int i = 0; i < 1; i++)
+                specialSubObjects[i].SetActive(false); // 預設隱藏
         }
     }
 
@@ -46,6 +49,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         if (observerBehaviour != null)
         {
             observerBehaviour.OnTargetStatusChanged -= OnTargetStatusChanged;
+            Debug.LogWarning("status: ");
         }
     }
 
@@ -53,6 +57,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
     {
         bool isTracked = status.Status == Status.TRACKED ||
                          status.Status == Status.EXTENDED_TRACKED;
+        Debug.LogWarning("status: " + status.Status);
 
         if (isTracked && vrCamera != null && objectToShow != null)
         {
@@ -73,6 +78,8 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
             objectToShow.transform.position = forwardPosition;
             //objectToShow.transform.rotation = Quaternion.LookRotation(vrCamera.forward); // 讓它面對相機前方
             objectToShow.SetActive(true);
+            for (int i = 0; i < 1; i++)
+                specialSubObjects[i].SetActive(true);
             Debug.LogWarning("------place object");
             rb = objectToShow.AddComponent<Rigidbody>();
             // 完全凍結位置和旋轉
@@ -84,13 +91,11 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
             rb.isKinematic = true;
             //}
         }
-        else if (objectToShow != null)
+        else
         {
-            objectToShow.SetActive(false);
+            Debug.LogWarning("displace object");
+            /*for (int i = 0; i < 5; i++)
+                specialSubObjects[i].SetActive(false);*/
         }
-    }
-    public void Update()
-    {
-        objectToShow.SetActive(false);
     }
 }
