@@ -161,6 +161,10 @@ public class ChatGPTManager : MonoBehaviour
         {
             userMessage += "這幅作品是王靜芝的書法，內容為「風送鐘聲雲嶺寺，水摇燈影鏡湖樓。」";
         }
+        else if (objectID == 20)
+        {
+            userMessage += "這幅作品是宣化上人的書法，內容講述這十法界從什麼地方生出來的？就從我們人現前這一念心­生出來的。所以說「十界一心，不離當念」：這十法界都沒有離開你，就是現前這一念。";
+        }
 
         userMessage += "請加以統整回答問題，字數50~80字";
         //string userMessage = "這幅書法作品的作者是誰";

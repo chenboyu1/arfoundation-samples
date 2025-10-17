@@ -1,7 +1,7 @@
 using UnityEngine;
 using Vuforia;
 
-public class ShowObjectInFrontOfCamera : MonoBehaviour
+public class ShowObjectInFrontOfCamera1 : MonoBehaviour
 {
     public GameObject objectToShow;              // 要顯示的物件
     public float distanceInFront = 500f;           // 距離相機的距離
@@ -9,25 +9,8 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
     private ObserverBehaviour observerBehaviour;
     private Rigidbody rb;
-    public GameObject[] specialSubObjects;
-    public static ShowObjectInFrontOfCamera Instance
-    {
-        get; private set;
-    }
-    public int objectID;
-    void Awake()
-    {
-        // 確保只有一個實例
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 切換場景時不會被銷毀（視情況而定）
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //public GameObject[] specialSubObjects;
+
     void Start()
     {
         observerBehaviour = GetComponent<ObserverBehaviour>();
@@ -39,8 +22,8 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
         if (objectToShow != null)
         {
             objectToShow.SetActive(false);
-            for (int i = 0; i < 1; i++)
-                specialSubObjects[i].SetActive(false); // 預設隱藏
+            //for (int i = 0; i < 1; i++)
+                //specialSubObjects[i].SetActive(false); // 預設隱藏
         }
     }
 
@@ -61,8 +44,7 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
 
         if (isTracked && vrCamera != null && objectToShow != null)
         {
-            objectID = 0;
-            Debug.Log("odject: " + objectID);
+            ShowObjectInFrontOfCamera.Instance.objectID = 20;
             //if (!objectToShow.activeSelf)
             //{
             // 將物件移動到相機正前方 distanceInFront 單位
@@ -70,8 +52,8 @@ public class ShowObjectInFrontOfCamera : MonoBehaviour
             objectToShow.transform.position = forwardPosition;
             //objectToShow.transform.rotation = Quaternion.LookRotation(vrCamera.forward); // 讓它面對相機前方
             objectToShow.SetActive(true);
-            for (int i = 0; i < 1; i++)
-                specialSubObjects[i].SetActive(true);
+            //for (int i = 0; i < 1; i++)
+                //specialSubObjects[i].SetActive(true);
             Debug.LogWarning("------place object");
             rb = objectToShow.AddComponent<Rigidbody>();
             // 完全凍結位置和旋轉

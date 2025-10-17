@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="qrcode_developer" size="400.000000 400.000000" />
     <ImageTarget name="qrcode_dinosaur" size="450.000000 450.000000" />
-    <ImageTarget name="ArtworkFrame" size="1477.000000 1108.000000" />
-    <ImageTarget name="qrcode_rgb1" size="400.000000 400.000000" />
-    <ImageTarget name="s__12820484" size="1108.000000 1477.000000" />
-    <ImageTarget name="artpic_rgb" size="2000.000000 1622.000000" />
   </Tracking>
 </QCARConfig>
