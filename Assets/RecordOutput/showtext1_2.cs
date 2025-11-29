@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ShowText1_2: MonoBehaviour
+public class ShowText1_2 : MonoBehaviour
 {
     public AudioSource audioSource;      // 播放語音
     public TMP_Text displayText;         // 對話框內顯示的文字
@@ -9,6 +9,7 @@ public class ShowText1_2: MonoBehaviour
 
     public AudioClip clipA;              // 音檔 A
     public AudioClip clipB;              // 音檔 B
+    public AudioClip clipC;              // 音檔 C（新增）
 
     private string textContent = @"「論書當欲心先正，學道豈容氣不平」寓意書法與修身同理。書寫之前須先端正心境，心正則筆正；而學道修行，亦當以氣度平和為本。此語強調藝由心生、書如其人，提醒人們唯有內心澄明，方能於筆墨與人生道路中達到真正境界。";
 
@@ -51,6 +52,12 @@ public class ShowText1_2: MonoBehaviour
         PlayClip(clipB);
     }
 
+    // 播放音檔 C（新增）
+    public void OnClickPlayAudioC()
+    {
+        PlayClip(clipC);
+    }
+
     // 暫停語音
     public void OnClickPauseAudio()
     {
@@ -62,13 +69,12 @@ public class ShowText1_2: MonoBehaviour
         }
     }
 
-
-    // 顯示/隱藏對話框（文字永遠顯示）
+    // 顯示/隱藏對話框
     public void OnClickShowDialog()
     {
         if (dialogPanel == null) return;
 
-        //alogPanel.SetActive(!dialogPanel.activeSelf);
+        // dialogPanel.SetActive(!dialogPanel.activeSelf);
     }
 
     // 共用的播放邏輯
@@ -85,4 +91,3 @@ public class ShowText1_2: MonoBehaviour
         audioSource.Play();
     }
 }
-

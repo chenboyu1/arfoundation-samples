@@ -9,6 +9,7 @@ public class ShowText1 : MonoBehaviour
 
     public AudioClip clipA;              // 音檔 A
     public AudioClip clipB;              // 音檔 B
+    public AudioClip clipC;              // 音檔 C（新增）
 
     private string textContent = @"這段話出自清代顧炎武，強調學問應兼顧知識與行誼。他指出，求學當廣博於典籍文章，而更重要的是在行為上知恥自律。學問不僅止於個人修養，還應推及家庭、國家，乃至天下社會，皆是學之所關。此語體現「經世致用」與「知行合一」的精神，提醒人們學問須落實於品格與責任，方能成為安身立命、治理國家之本。";
 
@@ -51,6 +52,12 @@ public class ShowText1 : MonoBehaviour
         PlayClip(clipB);
     }
 
+    // 播放音檔 C（新增）
+    public void OnClickPlayAudioC()
+    {
+        PlayClip(clipC);
+    }
+
     // 暫停語音
     public void OnClickPauseAudio()
     {
@@ -62,13 +69,12 @@ public class ShowText1 : MonoBehaviour
         }
     }
 
-
-    // 顯示/隱藏對話框（文字永遠顯示）
+    // 顯示/隱藏對話框
     public void OnClickShowDialog()
     {
         if (dialogPanel == null) return;
 
-        //alogPanel.SetActive(!dialogPanel.activeSelf);
+        // dialogPanel.SetActive(!dialogPanel.activeSelf);
     }
 
     // 共用的播放邏輯
@@ -85,4 +91,3 @@ public class ShowText1 : MonoBehaviour
         audioSource.Play();
     }
 }
-

@@ -9,6 +9,7 @@ public class ShowText1_5 : MonoBehaviour
 
     public AudioClip clipA;              // 音檔 A
     public AudioClip clipB;              // 音檔 B
+    public AudioClip clipC;              // 音檔 C（新增）
 
     private string textContent = @"這兩句詩描寫山水寺湖的幽靜景致：風吹過山嶺，寺廟的鐘聲隨風傳來，清脆悠遠，帶有空靈的禪意；湖面如鏡，微風搖動，燈火倒映其上，樓閣水影交錯，畫面典雅而柔和。詩中聲與影、動與靜相互呼應，營造出寧靜幽遠、飄逸脫俗的意境，使人彷彿身臨其境，感受山水與人文的和諧之美。";
 
@@ -51,6 +52,12 @@ public class ShowText1_5 : MonoBehaviour
         PlayClip(clipB);
     }
 
+    // 播放音檔 C（新增）
+    public void OnClickPlayAudioC()
+    {
+        PlayClip(clipC);
+    }
+
     // 暫停語音
     public void OnClickPauseAudio()
     {
@@ -62,13 +69,12 @@ public class ShowText1_5 : MonoBehaviour
         }
     }
 
-
-    // 顯示/隱藏對話框（文字永遠顯示）
+    // 顯示/隱藏對話框
     public void OnClickShowDialog()
     {
         if (dialogPanel == null) return;
 
-        //alogPanel.SetActive(!dialogPanel.activeSelf);
+        // dialogPanel.SetActive(!dialogPanel.activeSelf);
     }
 
     // 共用的播放邏輯
@@ -85,4 +91,3 @@ public class ShowText1_5 : MonoBehaviour
         audioSource.Play();
     }
 }
-
