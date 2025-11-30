@@ -111543,7 +111543,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1920580838}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShowText1, Assembly-CSharp
         m_MethodName: OnClickPlay
         m_Mode: 1
@@ -118409,10 +118409,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1920580842}
-    - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1920580838}
     - targetCorrespondingSourceObject: {fileID: 4345495004138282345, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       insertIndex: -1
@@ -137969,24 +137965,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1633184769}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1920580838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920580836}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2af54e29e8962a843975d807f297d05a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 1108784984}
-  displayText: {fileID: 391869663}
-  dialogPanel: {fileID: 0}
-  clipA: {fileID: 8300000, guid: 2d260dc699fe7cd49b2081256952079c, type: 3}
-  clipB: {fileID: 8300000, guid: 567128fcfb8e0894da82735f883594ee, type: 3}
-  clipC: {fileID: 0}
 --- !u!114 &1920580839 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2742089223469533462, guid: b8f7382051281456a93ced9c504c48c4,
