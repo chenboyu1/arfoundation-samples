@@ -21315,8 +21315,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
-  m_Resource: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a33aa486740d6ff4bb4e1e4a45cc87d8, type: 3}
+  m_Resource: {fileID: 8300000, guid: a33aa486740d6ff4bb4e1e4a45cc87d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -56736,6 +56736,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70ef304de6875cf4eb89b745cb4bac00, type: 3}
   - {fileID: 21300000, guid: 6ac80cc790da37047aedf10d5a9b2221, type: 3}
   - {fileID: 21300000, guid: 5d3e162d7750d8f488856a462d2a9009, type: 3}
+  clip:
+  - {fileID: 8300000, guid: a33aa486740d6ff4bb4e1e4a45cc87d8, type: 3}
+  - {fileID: 8300000, guid: 5acee66a37ce8434a9da000c2c089dd8, type: 3}
+  - {fileID: 8300000, guid: de31fcb0eef83cd47a51b0b68f0d225b, type: 3}
+  - {fileID: 8300000, guid: ebbb885fd0d1e6c409a56d03a1aff96b, type: 3}
+  - {fileID: 8300000, guid: 963a7b46db733804ea892dcd7263dc44, type: 3}
+  - {fileID: 8300000, guid: 1e6036f5bb9663e49a66b3b61d08f61e, type: 3}
+  - {fileID: 8300000, guid: afd655351f6d30543a8c112f720660a5, type: 3}
+  - {fileID: 8300000, guid: 478abd05334f1fd4399c4ff642c0a0e3, type: 3}
+  - {fileID: 8300000, guid: fd859da4a947de64ea2f7093674b00dd, type: 3}
+  - {fileID: 8300000, guid: 4b27d48598aaa424e947c68148d55e27, type: 3}
+  audioSource: {fileID: 303922339}
 --- !u!1 &773245350
 GameObject:
   m_ObjectHideFlags: 0
@@ -82033,7 +82045,7 @@ MonoBehaviour:
   imageObject: {fileID: 831501053}
   button_front: {fileID: 997490402}
   button_back: {fileID: 1998172258}
-  clipA: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
+  clipA: {fileID: 8300000, guid: a33aa486740d6ff4bb4e1e4a45cc87d8, type: 3}
   audioSource: {fileID: 303922339}
 --- !u!224 &1152871609
 RectTransform:
@@ -87197,7 +87209,7 @@ PrefabInstance:
     - target: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -159.00024
+      value: -159.00021
       objectReference: {fileID: 0}
     - target: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}

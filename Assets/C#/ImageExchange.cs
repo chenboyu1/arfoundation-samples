@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,23 @@ public class ImageGallery : MonoBehaviour
 
     private int currentIndex = 0;
 
+    public AudioClip[] clip;
+    public AudioSource audioSource;
+
     void Start()
     {
         if (images.Length > 0)
         {
             ShowImage(currentIndex);
+        }
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.playOnAwake = false;
         }
     }
 
@@ -28,6 +41,15 @@ public class ImageGallery : MonoBehaviour
             currentIndex = 0;
 
         ShowImage(currentIndex);
+        if (audioSource == null || clip == null) return;
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        audioSource.clip = clip[currentIndex];
+        audioSource.Play();
     }
 
     public void PreviousImage()
@@ -39,6 +61,15 @@ public class ImageGallery : MonoBehaviour
             currentIndex = images.Length - 1;
 
         ShowImage(currentIndex);
+        if (audioSource == null || clip == null) return;
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        audioSource.clip = clip[currentIndex];
+        audioSource.Play();
     }
 
     void ShowImage(int index)
