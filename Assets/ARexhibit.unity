@@ -77073,8 +77073,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d260dc699fe7cd49b2081256952079c, type: 3}
-  m_Resource: {fileID: 8300000, guid: 2d260dc699fe7cd49b2081256952079c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 170ddc9495eaa86438069ca6e76ff7b0, type: 3}
+  m_Resource: {fileID: 8300000, guid: 170ddc9495eaa86438069ca6e76ff7b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -110116,7 +110116,7 @@ MonoBehaviour:
   audioSource: {fileID: 1108784984}
   displayText: {fileID: 518842977}
   dialogPanel: {fileID: 1390875932}
-  clipA: {fileID: 8300000, guid: 7a5c1e27224f7544d8c80f2c9b9950c0, type: 3}
+  clipA: {fileID: 8300000, guid: 170ddc9495eaa86438069ca6e76ff7b0, type: 3}
   clipB: {fileID: 8300000, guid: 567128fcfb8e0894da82735f883594ee, type: 3}
   charsPerPage: 180
 --- !u!1 &1518938044
