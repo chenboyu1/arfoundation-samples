@@ -19782,6 +19782,8 @@ MonoBehaviour:
   imageObject: {fileID: 279481524}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &280773716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21078,6 +21080,8 @@ MonoBehaviour:
   imageObject: {fileID: 1705074278}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &300695090
 GameObject:
   m_ObjectHideFlags: 0
@@ -21269,6 +21273,135 @@ MonoBehaviour:
   clipA: {fileID: 0}
   clipB: {fileID: 0}
   clipC: {fileID: 0}
+--- !u!1 &303922337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 303922338}
+  - component: {fileID: 303922339}
+  m_Layer: 0
+  m_Name: "\u6CD5\u754C\u5716\u4ECB\u7D39"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &303922338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303922337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 557812975}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &303922339
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303922337}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
+  m_Resource: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &303992656
 GameObject:
   m_ObjectHideFlags: 0
@@ -27206,6 +27339,8 @@ MonoBehaviour:
   imageObject: {fileID: 1655586513}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &387028520
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40730,6 +40865,7 @@ Transform:
   - {fileID: 1223721981}
   - {fileID: 1612969919}
   - {fileID: 574851446}
+  - {fileID: 303922338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &558555038
@@ -54056,7 +54192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &740293638
 Transform:
   m_ObjectHideFlags: 0
@@ -60405,6 +60541,8 @@ MonoBehaviour:
   imageObject: {fileID: 685305086}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &843081174
 GameObject:
   m_ObjectHideFlags: 0
@@ -64920,6 +65058,8 @@ MonoBehaviour:
   imageObject: {fileID: 384798935}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &923877381
 RectTransform:
   m_ObjectHideFlags: 0
@@ -69215,6 +69355,8 @@ MonoBehaviour:
   imageObject: {fileID: 601507834}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &991107587
 GameObject:
   m_ObjectHideFlags: 0
@@ -81891,6 +82033,8 @@ MonoBehaviour:
   imageObject: {fileID: 831501053}
   button_front: {fileID: 997490402}
   button_back: {fileID: 1998172258}
+  clipA: {fileID: 8300000, guid: b551496e1ca3e4f449f7158047485c2b, type: 3}
+  audioSource: {fileID: 303922339}
 --- !u!224 &1152871609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -87053,7 +87197,7 @@ PrefabInstance:
     - target: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -159.00021
+      value: -159.00024
       objectReference: {fileID: 0}
     - target: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
@@ -96056,6 +96200,8 @@ MonoBehaviour:
   imageObject: {fileID: 1101495731}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &1314559200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -109958,7 +110104,7 @@ MonoBehaviour:
   audioSource: {fileID: 1108784984}
   displayText: {fileID: 518842977}
   dialogPanel: {fileID: 1390875932}
-  clipA: {fileID: 8300000, guid: 2d260dc699fe7cd49b2081256952079c, type: 3}
+  clipA: {fileID: 8300000, guid: 7a5c1e27224f7544d8c80f2c9b9950c0, type: 3}
   clipB: {fileID: 8300000, guid: 567128fcfb8e0894da82735f883594ee, type: 3}
   charsPerPage: 180
 --- !u!1 &1518938044
@@ -110594,6 +110740,8 @@ MonoBehaviour:
   imageObject: {fileID: 1866854051}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &1525105003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -113774,6 +113922,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1152871608}
         m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
         m_MethodName: ToggleImageDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1152871608}
+        m_TargetAssemblyTypeName: ToggleImage, Assembly-CSharp
+        m_MethodName: OnClickPlayAudioA
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -133503,6 +133663,8 @@ MonoBehaviour:
   imageObject: {fileID: 1702045646}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &1849312219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -148005,6 +148167,8 @@ MonoBehaviour:
   imageObject: {fileID: 1511633544}
   button_front: {fileID: 0}
   button_back: {fileID: 0}
+  clipA: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!224 &2045190651
 RectTransform:
   m_ObjectHideFlags: 0
