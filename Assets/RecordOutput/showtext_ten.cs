@@ -12,7 +12,7 @@ public class ShowText_ten : MonoBehaviour
     public AudioClip clipB;
 
  
-    public int charsPerPage = 180;  // 每頁大約 180 字，可依需求調整
+    public int charsPerPage = 100;  // 每頁大約 180 字，可依需求調整
     private List<string> pages = new List<string>();
     private int currentPage = 0;
 
