@@ -9,7 +9,7 @@ public class ShowObjectInFrontOfCamera1 : MonoBehaviour
 
     private ObserverBehaviour observerBehaviour;
     private Rigidbody rb;
-    //public GameObject[] specialSubObjects;
+    public GameObject[] specialSubObjects;
 
     void Start()
     {
@@ -22,8 +22,8 @@ public class ShowObjectInFrontOfCamera1 : MonoBehaviour
         if (objectToShow != null)
         {
             objectToShow.SetActive(false);
-            //for (int i = 0; i < 1; i++)
-                //specialSubObjects[i].SetActive(false); // 預設隱藏
+            for (int i = 0; i < 1; i++)
+                specialSubObjects[i].SetActive(false); // 預設隱藏
         }
     }
 
@@ -52,8 +52,8 @@ public class ShowObjectInFrontOfCamera1 : MonoBehaviour
             objectToShow.transform.position = forwardPosition;
             //objectToShow.transform.rotation = Quaternion.LookRotation(vrCamera.forward); // 讓它面對相機前方
             objectToShow.SetActive(true);
-            //for (int i = 0; i < 1; i++)
-                //specialSubObjects[i].SetActive(true);
+            for (int i = 0; i < 1; i++)
+                specialSubObjects[i].SetActive(true);
             Debug.LogWarning("------place object");
             rb = objectToShow.AddComponent<Rigidbody>();
             // 完全凍結位置和旋轉

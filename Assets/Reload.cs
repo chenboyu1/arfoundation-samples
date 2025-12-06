@@ -18,6 +18,7 @@ public class Reload : MonoBehaviour
 {
     public GameObject objectToShow;
     public GameObject[] specialSubObjects;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,8 +35,8 @@ public class Reload : MonoBehaviour
     {
         //SceneManager.LoadScene(0);
         //Invoke("LoadScene", 2);
-        for (int i = 0; i < 5; i++)
-            specialSubObjects[i].SetActive(false);
+        //for (int i = 0; i < 5; i++)
+            specialSubObjects[0].SetActive(false);
     }
 
     public IEnumerator LoadScene()
