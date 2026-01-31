@@ -27,7 +27,7 @@ public class ShowText_ten : MonoBehaviour
     [SerializeField]
     public List<float> pageTimesB = new List<float>()
     {
-        0f, 18f, 39f, 52f, 72f, 94f, 118f, 141f, 164f, 182f, 204f
+        0f, 18f, 38f, 52f, 73f, 94f, 119f, 144f, 168f, 186f, 212f
     };
 
     private List<float> currentPageTimes;
