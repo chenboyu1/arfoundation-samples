@@ -18,22 +18,22 @@ public class ShowText_ten : MonoBehaviour
     private int currentPage = 0;
 
     // 每頁對應的開始時間（秒）
+    [SerializeField]
     public List<float> pageTimesA = new List<float>()
     {
-        0f, 10f, 40f, 53f, 106f, 157f, 170f, 190f, 197f, 210f, 225f, 244f
+        0f, 12f, 40f, 53f, 108f, 157f, 170f, 190f, 197f, 210f, 225f, 244f
     };
 
+    [SerializeField]
     public List<float> pageTimesB = new List<float>()
     {
-        0f, 18f, 39f, 52f, 72f, 94f, 118f, 141f, 164f, 182f, 204f, 223f
+        0f, 18f, 39f, 52f, 72f, 94f, 118f, 141f, 164f, 182f, 204f
     };
 
     private List<float> currentPageTimes;
 
     // 宣化
-    private string textContentA = @"
-十界一心，不離當念；能覺此念，立登彼岸。
----PAGE---
+    private string textContentA = @"十界一心，不離當念；能覺此念，立登彼岸。---PAGE---
 「十界一心」：佛、菩薩、聲聞、緣覺，這是四聖法界；天、人、阿修羅、地獄、餓鬼、畜生，這是六凡法界。合起來，叫十法界。
 ---PAGE---
 這十法界從什麼地方生出來的？就從我們人現前一念心生出來的。
@@ -54,12 +54,10 @@ public class ShowText_ten : MonoBehaviour
 ---PAGE---
 你研究研究，各有各性。樹也有樹的性，花有花的性，草有草的性，各有其性，所以說「法界性」。不是說那個法界有性，是法界的眾生性。
 ---PAGE---
-你們現在明白了沒有？以前你們都以為是法界性，現在是那法界之中的眾生性，所以才說「應觀法界性」。
-";
+你們現在明白了沒有？以前你們都以為是法界性，現在是那法界之中的眾生性，所以才說「應觀法界性」。";
 
     // 法師
-    private string textContentB = @"
-美國萬佛聖城開山祖師上宣下化老和尚說「十法界不離一念心」。十界一心，不離當念；能覺此念，立登彼岸。
+    private string textContentB = @"美國萬佛聖城開山祖師上宣下化老和尚說「十法界不離一念心」。十界一心，不離當念；能覺此念，立登彼岸。
 ---PAGE---
 「十界一心」：佛、菩薩、聲聞、緣覺，這是四聖法界；天、人、阿修羅、地獄、餓鬼、畜生，這是六凡法界。
 ---PAGE---
@@ -104,49 +102,39 @@ public class ShowText_ten : MonoBehaviour
 
     void Update()
     {
-        if (audioSource == null || !isAudioPlaying || currentPageTimes == null)
+        if (!isAudioPlaying || audioSource == null || currentPageTimes == null)
             return;
 
         float t = audioSource.time;
 
-        // 字幕更新
-        for (int i = 0; i < pages.Count; i++)
+        // 防呆：頁數 & 時間表必須一致
+        if (pages.Count != currentPageTimes.Count)
         {
-            // 如果已經到下一頁的時間就換頁
-            if (i < currentPageTimes.Count - 1)
-            {
-                if (t >= currentPageTimes[i] && t < currentPageTimes[i + 1])
-                {
-                    if (currentPage != i)
-                    {
-                        currentPage = i;
-                        ShowPage(currentPage);
-                    }
-                    break;
-                }
-            }
-            else
-            {
-                // 最後一頁，直到音檔結束
-                if (t >= currentPageTimes[i])
-                {
-                    if (currentPage != i)
-                    {
-                        currentPage = i;
-                        ShowPage(currentPage);
-                    }
-                    break;
-                }
-            }
+            Debug.LogError($"頁數({pages.Count}) 與 pageTimes({currentPageTimes.Count}) 不一致！");
+            return;
         }
 
-        // 播放完音檔 → 自動停止
-        if (!audioSource.isPlaying && isAudioPlaying)
+        // 核心翻頁邏輯（可連續補跳）
+        while (
+            currentPage < currentPageTimes.Count - 1 &&
+            t >= currentPageTimes[currentPage + 1]
+        )
+        {
+            currentPage++;
+            ShowPage(currentPage);
+            Debug.Log($"翻頁 → Page {currentPage} at {t:F2}s");
+        }
+
+        // 播放結束（只會進來一次）
+        if (!audioSource.isPlaying)
         {
             isAudioPlaying = false;
             currentPage = 0;
+            ShowPage(0);
+            Debug.Log("播放結束 → 回第一頁");
         }
     }
+
 
     // 播放 A
     public void OnClickPlayAudioA()
