@@ -37,11 +37,12 @@ public class Reload : MonoBehaviour
         //Invoke("LoadScene", 2);
         //for (int i = 0; i < 5; i++)
             specialSubObjects[0].SetActive(false);
+            specialSubObjects[5].SetActive(false);
     }
 
     public IEnumerator LoadScene()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
             specialSubObjects[i].SetActive(false);
         yield return new WaitForSeconds(1f);
     }
