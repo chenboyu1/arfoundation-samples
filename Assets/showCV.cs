@@ -150,7 +150,7 @@ public class showCV : MonoBehaviour
     {
         SetupPagesBySplit(textContent1, ref pages);
         SetupPagesBySplit(textContentEN1, ref pagesEN);
-        //yield return StartCoroutine(RepeatAction(7));
+        yield return StartCoroutine(RepeatAction(7));
         SetupPagesBySplit(textContent2, ref pages);
         SetupPagesBySplit(textContentEN2, ref pagesEN);
         yield return StartCoroutine(RepeatAction(10));
