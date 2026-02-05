@@ -88,6 +88,7 @@ public class showCV : MonoBehaviour
         DRBA and all that are under its umbrella are impartially open to those of all ages, faiths, ethnic origins, and nationalities. Anyone— whichever individual it may be—is welcome to join in the pursuit of truth, and of the spiritual paths (understand the mind and see the nature), for the betterment of humankind through cultivation of virtue, especially that of humaneness and righteousness.
     ";
     bool isPaused = false;
+    bool isNext = false;
     private void Start()
     {
         isPaused = true;
@@ -102,9 +103,7 @@ public class showCV : MonoBehaviour
             currentPage++;
             currentPageEN++;
 
-            // 修改這裡：不再使用無法中斷的 WaitForSeconds
-            // 改為使用我們自定義的 WaitWhilePaused
-            yield return StartCoroutine(WaitWhilePaused(6f));
+            yield return StartCoroutine(WaitWhilePaused(12f));
         }
     }
 
@@ -114,19 +113,29 @@ public class showCV : MonoBehaviour
         displayText.gameObject.SetActive(true);
         StartCoroutine(SequenceController());
     }
-    // 支援暫停功能的等待函數
     IEnumerator WaitWhilePaused(float seconds)
     {
         float timer = 0;
         while (timer < seconds)
         {
-            // 只有沒暫停時才跑時間
+            // 1. 如果有人按了「下一頁」，立刻結束這個協程
+            if (isNext)
+            {
+                isNext = false; // 重置開關，讓下次等待正常運作
+                yield break;    // 直接跳出迴圈，結束等待
+            }
+
+            // 2. 處理暫停邏輯
             if (!isPaused)
             {
                 timer += Time.deltaTime;
             }
-            yield return null; // 每一幀檢查一次狀態
+            yield return null;
         }
+    }
+    public void Nextpage()
+    {
+        isNext = true;
     }
     public void TogglePause()
     {
@@ -141,13 +150,13 @@ public class showCV : MonoBehaviour
     {
         SetupPagesBySplit(textContent1, ref pages);
         SetupPagesBySplit(textContentEN1, ref pagesEN);
-        yield return StartCoroutine(RepeatAction(6));
+        //yield return StartCoroutine(RepeatAction(7));
         SetupPagesBySplit(textContent2, ref pages);
         SetupPagesBySplit(textContentEN2, ref pagesEN);
-        yield return StartCoroutine(RepeatAction(9));
+        yield return StartCoroutine(RepeatAction(10));
         SetupPagesBySplit(textContent3, ref pages);
         SetupPagesBySplit(textContentEN3, ref pagesEN);
-        yield return StartCoroutine(RepeatAction(6));
+        yield return StartCoroutine(RepeatAction(7));
     }
     private void SetupPagesBySplit(string content, ref List<string> pages)
     {
@@ -182,4 +191,6 @@ public class showCV : MonoBehaviour
             displayTextEN.gameObject.SetActive(true);
         }
     }
+
+    
 }
