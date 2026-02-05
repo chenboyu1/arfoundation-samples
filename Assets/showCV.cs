@@ -103,7 +103,7 @@ public class showCV : MonoBehaviour
             currentPage++;
             currentPageEN++;
 
-            yield return StartCoroutine(WaitWhilePaused(12f));
+            yield return new WaitForSeconds(12f);
         }
     }
 
