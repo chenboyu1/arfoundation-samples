@@ -13,7 +13,7 @@ public class MenuToggleController : MonoBehaviour
     {
         bool isActive = explanationMenu.activeSelf;
         explanationMenu.SetActive(!isActive);  // 切換顯示
-        displayText.gameObject.SetActive(!isActive);
+        //displayText.gameObject.SetActive(!isActive);
         voiceMenu.SetActive(false);            // 關閉另一群組
         CVMenu.SetActive(false);
         dialogPanel.SetActive(true);
