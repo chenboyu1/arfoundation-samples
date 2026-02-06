@@ -10637,7 +10637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 769967913}
   voiceMenu: {fileID: 1523705537}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 1921034314}
   displayText: {fileID: 1792360471}
 --- !u!1 &134193037
@@ -11451,8 +11450,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1882598247}
-        m_TargetAssemblyTypeName: MenuToggleController, Assembly-CSharp
+      - m_Target: {fileID: 1882598248}
+        m_TargetAssemblyTypeName: MenuToggle, Assembly-CSharp
         m_MethodName: ToggleVoiceMenu
         m_Mode: 1
         m_Arguments:
@@ -22775,8 +22774,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22835,7 +22834,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312325152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 3.0363, y: 3.0363, z: 3.0363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22843,8 +22842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 251}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.862, y: 460}
+  m_SizeDelta: {x: 268.251, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &313928457
 GameObject:
@@ -29025,7 +29024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 28592326}
   voiceMenu: {fileID: 283755165}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 0}
   displayText: {fileID: 0}
 --- !u!1 &397842535
@@ -31577,7 +31575,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSize
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -31618,7 +31616,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -31679,7 +31677,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1462.834
+      value: 1583.76
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -31744,7 +31742,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -838.9999
+      value: -697
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -32825,7 +32823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 1601385732}
   voiceMenu: {fileID: 466885933}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 2028437643}
   displayText: {fileID: 1417404007}
 --- !u!1 &444438558
@@ -34330,7 +34327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 388881215}
   voiceMenu: {fileID: 1561443773}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 0}
   displayText: {fileID: 0}
 --- !u!1 &467532919
@@ -36317,7 +36313,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSize
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -36358,7 +36354,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -36419,7 +36415,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1082.962
+      value: 1604.257
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -36454,7 +36450,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: -14.996
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -36479,12 +36475,12 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -652
+      value: -687.438
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -766.0002
+      value: -688
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -40883,8 +40879,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 37
+  m_fontSizeBase: 37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -40943,7 +40939,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542563118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 3.0363, y: 3.0363, z: 3.0363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40951,8 +40947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 208}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -2.749, y: 469}
+  m_SizeDelta: {x: 270.631, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &543046778
 GameObject:
@@ -52383,7 +52379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &693547361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53695,7 +53691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &712002743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55555,7 +55551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &740293638
 Transform:
   m_ObjectHideFlags: 0
@@ -55624,7 +55620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 2022331798}
   voiceMenu: {fileID: 1241693244}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 0}
   displayText: {fileID: 0}
 --- !u!1 &741646536
@@ -61195,7 +61190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &824891755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -62680,8 +62675,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -62740,7 +62735,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849645734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000087822}
   m_LocalScale: {x: 3.0363, y: 3.0363, z: 3.0363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62748,8 +62743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 231}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -13.581, y: 460}
+  m_SizeDelta: {x: 253.98, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &852648536
 GameObject:
@@ -62801,7 +62796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 1944504147}
   voiceMenu: {fileID: 1456176962}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 2027666018}
   displayText: {fileID: 542563119}
 --- !u!1 &855399039
@@ -66343,7 +66337,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSize
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -66384,7 +66378,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -66445,7 +66439,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1487.697
+      value: 1626.284
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -66510,7 +66504,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -837.9999
+      value: -691
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -76196,18 +76190,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059916955}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -105.00037}
-  m_LocalScale: {x: 0.3516934, y: 0.3516934, z: 0.3516934}
+  m_LocalPosition: {x: 0, y: 0, z: 12.742526}
+  m_LocalScale: {x: 1.5663679, y: 1.5663679, z: 1.5663679}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1117870695}
   - {fileID: 1247527812}
-  - {fileID: 1406544125}
-  m_Father: {fileID: 1863032009}
+  m_Father: {fileID: 1406544125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 560, y: 1364}
+  m_AnchoredPosition: {x: -3.1936035, y: -9.39856}
   m_SizeDelta: {x: 1138, y: 555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059916957
@@ -76266,8 +76259,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1882598247}
-        m_TargetAssemblyTypeName: MenuToggleController, Assembly-CSharp
+      - m_Target: {fileID: 1882598248}
+        m_TargetAssemblyTypeName: MenuToggle, Assembly-CSharp
         m_MethodName: ToggleCVMenu
         m_Mode: 1
         m_Arguments:
@@ -90693,7 +90686,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSize
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -90734,7 +90727,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -90795,7 +90788,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1405.25
+      value: 1600.846
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -90860,7 +90853,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -839.9999
+      value: -693
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -98354,7 +98347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1309502547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -101008,7 +101001,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSize
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -101049,7 +101042,7 @@ PrefabInstance:
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1470578526800396630, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -101110,7 +101103,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1480.202
+      value: 1665.127
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -101175,7 +101168,7 @@ PrefabInstance:
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -844.9998
+      value: -685
       objectReference: {fileID: 0}
     - target: {fileID: 6920832471191844286, guid: 73c785392398c9c48a10054aa6bb2d7f,
         type: 3}
@@ -106677,17 +106670,18 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406544124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.1371}
-  m_LocalScale: {x: 0.6384196, y: 0.6384196, z: 0.6384196}
+  m_LocalPosition: {x: 0, y: 0, z: -107.86191}
+  m_LocalScale: {x: 0.22452797, y: 0.22452797, z: 0.22452797}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 898174743}
   - {fileID: 207651405}
-  m_Father: {fileID: 1059916956}
+  - {fileID: 1059916956}
+  m_Father: {fileID: 1863032009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.04, y: 6}
+  m_AnchoredPosition: {x: 560.7173, y: 1366.1101}
   m_SizeDelta: {x: 1287.26, y: 555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406544126
@@ -106746,8 +106740,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1882598247}
-        m_TargetAssemblyTypeName: MenuToggleController, Assembly-CSharp
+      - m_Target: {fileID: 1882598248}
+        m_TargetAssemblyTypeName: MenuToggle, Assembly-CSharp
         m_MethodName: ToggleCVMenu
         m_Mode: 1
         m_Arguments:
@@ -110040,7 +110034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1462045822
 RectTransform:
   m_ObjectHideFlags: 0
@@ -115418,8 +115412,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1882598247}
-        m_TargetAssemblyTypeName: MenuToggleController, Assembly-CSharp
+      - m_Target: {fileID: 1882598248}
+        m_TargetAssemblyTypeName: MenuToggle, Assembly-CSharp
         m_MethodName: ToggleExplanationMenu
         m_Mode: 1
         m_Arguments:
@@ -118115,7 +118109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 1964867288}
   voiceMenu: {fileID: 145219652}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 630023341}
   displayText: {fileID: 312325153}
 --- !u!1 &1581025419
@@ -120076,8 +120069,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -120144,8 +120137,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 224}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -20.801018, y: 453}
+  m_SizeDelta: {x: 258.736, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1604514499
 GameObject:
@@ -122550,7 +122543,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1059916956}
+      addedObject: {fileID: 1406544125}
     - targetCorrespondingSourceObject: {fileID: 1406819451971201881, guid: b8f7382051281456a93ced9c504c48c4,
         type: 3}
       insertIndex: -1
@@ -134029,8 +134022,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -134097,7 +134090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 197}
+  m_AnchoredPosition: {x: 20, y: 459}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1792517095
@@ -137746,7 +137739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 369900872}
   voiceMenu: {fileID: 919084337}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 1047773938}
   displayText: {fileID: 1603405460}
 --- !u!1 &1849059330
@@ -140281,6 +140273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882598246}
   - component: {fileID: 1882598247}
+  - component: {fileID: 1882598248}
   m_Layer: 5
   m_Name: MenuManager
   m_TagString: Untagged
@@ -140314,9 +140307,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882598245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15498779e67e40d42b448b8ddb78f37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explanationMenu: {fileID: 1442088327}
+  voiceMenu: {fileID: 1070676116}
+  dialogPanel: {fileID: 1390875932}
+  displayText: {fileID: 518842977}
+--- !u!114 &1882598248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882598245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9ec2449b4f26b42b6b8c1fca537081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 1442088327}
@@ -150079,7 +150088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 1194046208}
   voiceMenu: {fileID: 1836521727}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 942819473}
   displayText: {fileID: 849645735}
 --- !u!1 &2002087601
@@ -153543,7 +153551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explanationMenu: {fileID: 560084321}
   voiceMenu: {fileID: 494534562}
-  CVMenu: {fileID: 0}
   dialogPanel: {fileID: 0}
   displayText: {fileID: 0}
 --- !u!1 &2056678168

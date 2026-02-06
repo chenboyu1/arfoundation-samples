@@ -73,7 +73,7 @@ public class ShowText1_5 : MonoBehaviour
     public void OnClickShowDialog()
     {
         if (dialogPanel == null) return;
-
+        displayText.gameObject.SetActive(true);
         // dialogPanel.SetActive(!dialogPanel.activeSelf);
     }
 
