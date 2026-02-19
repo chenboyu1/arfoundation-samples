@@ -1,28 +1,74 @@
 using UnityEngine;
+using System.Collections;
 
-public class ToggleMultiText : MonoBehaviour
+public class AudioSubtitlePlayer : MonoBehaviour
 {
-    public GameObject[] textObjects; // 多段文字物件
-    private bool isVisible = false;
+    [System.Serializable]
+    public class Subtitle
+    {
+        public float showTime;        // 幾秒時顯示
+        public GameObject textObject; // 對應文字
+    }
+
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public Subtitle[] subtitles;
+
+    private bool isPlaying = false;
 
     void Start()
     {
-        foreach (GameObject obj in textObjects)
-        {
-            obj.SetActive(false); // 確保一開始為隱藏狀態
-        }
+        HideAllText();
     }
 
-    public void ToggleTextGroup()
+    public void PlayAudioWithSubtitles()
     {
-        isVisible = !isVisible;
-        Debug.Log("Toggled! New visible: " + isVisible);
-
-        foreach (GameObject obj in textObjects)
+        if (!isPlaying)
         {
-            Debug.Log("Setting " + obj.name + " active: " + isVisible);
-            obj.SetActive(isVisible);
+            StartCoroutine(PlayRoutine());
         }
     }
 
+    IEnumerator PlayRoutine()
+    {
+        isPlaying = true;
+        HideAllText();
+
+        // 確保 AudioSource 啟用
+        if (!audioSource.gameObject.activeInHierarchy)
+            audioSource.gameObject.SetActive(true);
+
+        if (!audioSource.enabled)
+            audioSource.enabled = true;
+
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
+        int index = 0;
+
+        while (audioSource.isPlaying)
+        {
+            float currentTime = audioSource.time;
+
+            if (index < subtitles.Length && currentTime >= subtitles[index].showTime)
+            {
+                subtitles[index].textObject.SetActive(true);
+                index++;
+            }
+
+            yield return null;
+        }
+
+        HideAllText();
+        isPlaying = false;
+    }
+
+    void HideAllText()
+    {
+        foreach (var sub in subtitles)
+        {
+            if (sub.textObject != null)
+                sub.textObject.SetActive(false);
+        }
+    }
 }
