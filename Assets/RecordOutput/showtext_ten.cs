@@ -6,6 +6,7 @@ public class ShowText_ten : MonoBehaviour
 {
     [Header("UI")]
     public TMP_Text displayText;
+    public TMP_Text displayTextEN;
     public GameObject dialogPanel;
 
     [Header("Audio")]
@@ -15,7 +16,9 @@ public class ShowText_ten : MonoBehaviour
 
     // 目前頁面資料
     private List<string> pages = new List<string>();
+    private List<string> pagesEN = new List<string>();
     private int currentPage = 0;
+    private int currentPageEN = 0;
 
     // 每頁對應的開始時間（秒）
     [SerializeField]
@@ -56,6 +59,36 @@ public class ShowText_ten : MonoBehaviour
 ---PAGE---
 你們現在明白了沒有？以前你們都以為是法界性，現在是那法界之中的眾生性，所以才說「應觀法界性」。";
 
+    private string textContentAEN = @"Ten Dharma Realms in a single thought, We find them only here and now; Awaken to this very thought: Just then we reach the other shore.
+---PAGE---
+Ten Dharma Realms in a single thought; Buddhas, Bodhisattvas, Solitary Sages, and Voice Hearers are the four Dharma Realms of Sages. Gods, humans, asuras, animals, hungry ghosts, and hell-beings are the six Dharma Realms of ordinary beings. Together, they make up the ten Dharma Realms.
+---PAGE---
+Where do the ten Dharma Realms come from? 
+They come from the present thought in our minds.
+---PAGE---
+Therefore, the ten Dharma Realms are not outside of your experience but are in this immediate thought. Awaken to this very thought: Just then we reach the other shore. 
+What is the other shore?
+Awakening—you are simply no longer confused.
+---PAGE---
+Take a look at the nature of the Dharma Realm.
+Actually, this phrase refers to the nature of the living beings in the Dharma Realm. Every living being of the Dharma Realm has its own nature.  Pigs have the nature of pigs; horses have the nature of horses.
+---PAGE---
+Men have the nature of men; women have the nature of women. Each has his or her own nature.
+---PAGE---
+Those who like to eat sweet food have a sweet nature; those who like to eat sour food have a sour nature; those who like hot, spicy food have a hot and spicy nature;
+---PAGE---
+those who like bitter food—like all of us here, we all have a bitter nature. 
+Do you agree? 
+---PAGE---
+We practice bitter ascetic practices. Cultivation is an ascetic practice, and even going to the dining hall to eat is part of the ascetic practice.
+---PAGE---
+However, in this ascetic practice of eating, none of you want to be at the end; all of you race toward the front.      
+Do you agree?
+---PAGE---
+When we look into it, we find that everything has its own nature: trees have the nature of trees; flowers have the nature of flowers; grass has the nature of grass.
+So “the nature of the Dharma Realm” refers to the nature of each living being in the Dharma Realm and not the Dharma Realm’s nature.
+---PAGE---
+Do you understand now? In the past, you thought that it was the Dharma Realm that had its own nature. Now, you know that it is the living beings in the Dharma Realm who have their own nature.";
     // 法師
     private string textContentB = @"美國萬佛聖城開山祖師上宣下化老和尚說「十法界不離一念心」。十界一心，不離當念；能覺此念，立登彼岸。
 ---PAGE---
@@ -121,7 +154,8 @@ public class ShowText_ten : MonoBehaviour
         )
         {
             currentPage++;
-            ShowPage(currentPage);
+            ShowPage(currentPage, 0);
+            ShowPage(currentPage, 1);
             Debug.Log($"翻頁 → Page {currentPage} at {t:F2}s");
         }
 
@@ -130,7 +164,8 @@ public class ShowText_ten : MonoBehaviour
         {
             isAudioPlaying = false;
             currentPage = 0;
-            ShowPage(0);
+            ShowPage(0, 0);
+            ShowPage(0, 1);
             Debug.Log("播放結束 → 回第一頁");
         }
     }
@@ -139,7 +174,8 @@ public class ShowText_ten : MonoBehaviour
     // 播放 A
     public void OnClickPlayAudioA()
     {
-        SetupPagesBySplit(textContentA);
+        SetupPagesBySplit(textContentA, ref pages, 0);
+        SetupPagesBySplit(textContentAEN, ref pagesEN, 1);
         currentPageTimes = pageTimesA;
         PlayClip(clipA);
     }
@@ -147,7 +183,7 @@ public class ShowText_ten : MonoBehaviour
     // 播放 B
     public void OnClickPlayAudioB()
     {
-        SetupPagesBySplit(textContentB);
+        SetupPagesBySplit(textContentB, ref pages, 0);
         currentPageTimes = pageTimesB;
         PlayClip(clipB);
     }
@@ -166,7 +202,7 @@ public class ShowText_ten : MonoBehaviour
         if (currentPage < pages.Count - 1)
         {
             currentPage++;
-            ShowPage(currentPage);
+            ShowPage(currentPage, 0);
         }
     }
 
@@ -176,12 +212,12 @@ public class ShowText_ten : MonoBehaviour
         if (currentPage > 0)
         {
             currentPage--;
-            ShowPage(currentPage);
+            ShowPage(currentPage, 0);
         }
     }
 
     // 依 ---PAGE--- 分頁
-    private void SetupPagesBySplit(string content)
+    private void SetupPagesBySplit(string content, ref List<string> pages, int language)
     {
         pages.Clear();
 
@@ -196,15 +232,23 @@ public class ShowText_ten : MonoBehaviour
         }
 
         currentPage = 0;
-        ShowPage(0);
+        ShowPage(0, language);
     }
 
-    private void ShowPage(int index)
+    private void ShowPage(int index, int language)
     {
         if (displayText == null || pages.Count == 0) return;
 
-        displayText.text = pages[index];
-        displayText.gameObject.SetActive(true);
+        if (language == 0)
+        {
+            displayText.text = pages[index];
+            displayText.gameObject.SetActive(true);
+        }
+        else
+        {
+            displayTextEN.text = pagesEN[index];
+            displayTextEN.gameObject.SetActive(true);
+        }
     }
 
     private void PlayClip(AudioClip clip)
@@ -218,6 +262,7 @@ public class ShowText_ten : MonoBehaviour
         isAudioPlaying = true;
 
         currentPage = 0;
-        ShowPage(0);
+        ShowPage(0, 0);
+        ShowPage(0, 1);
     }
 }
